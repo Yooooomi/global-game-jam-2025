@@ -11,6 +11,8 @@ public class PlayerControls : MonoBehaviour
 
     public Vector2 move { get; private set; }
     public Vector2 look { get; private set; }
+    public bool blow { get; private set; }
+    public bool shoot { get; private set; }
 
     private bool isKeyboardAndMouse = false;
 
@@ -37,9 +39,20 @@ public class PlayerControls : MonoBehaviour
 
     private void OnLook(InputValue value)
     {
-        if (isKeyboardAndMouse) {
+        if (isKeyboardAndMouse)
+        {
             return;
         }
         look = value.Get<Vector2>();
+    }
+
+    private void OnBlow(InputValue value)
+    {
+        blow = value.Get<float>() > 0;
+    }
+
+    private void OnShoot(InputValue value)
+    {
+        shoot = value.Get<float>() > 0;
     }
 }
