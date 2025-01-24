@@ -42,8 +42,7 @@ public class BubbleSpawner : MonoBehaviour
         lastSpawnTime = Time.time;
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (Time.time > lastSpawnTime + spawnEverySec) {
             SpawnBubbles();
