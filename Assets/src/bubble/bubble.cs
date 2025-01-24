@@ -16,8 +16,6 @@ public class bubble : MonoBehaviour
     [SerializeField]
     private float changeVibeEverySec = 0.5f;
     [SerializeField]
-    private float vibeLerp = 0.5f;
-    [SerializeField]
     private float vibeIntensity = 100f;
     private float lastVibeDirChangeTime = 0;
     private Vector2 vibeDir;
