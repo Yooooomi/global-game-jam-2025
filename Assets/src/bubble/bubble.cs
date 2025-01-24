@@ -14,6 +14,11 @@ public class bubble : MonoBehaviour
     private Rigidbody2D body;
 
     [SerializeField]
+    private float refreshTargetEverySec = 2f;
+
+    private float lastTargetRefreshTime = 0f;
+
+    [SerializeField]
     private float changeVibeEverySec = 0.5f;
     [SerializeField]
     private float vibeIntensity = 100f;
@@ -23,6 +28,9 @@ public class bubble : MonoBehaviour
 
     private void ResetVibeDir()
     {
+        if (!target) {
+            return;
+        }
         Vector2 toDest = (target.transform.position - transform.position).normalized;
 
         // Random vibe from -90 up to 90 degree toward target
@@ -34,14 +42,36 @@ public class bubble : MonoBehaviour
         vibeDir = newVibe.normalized;
     }
 
+    private void UpdateTarget() {
+        lastTargetRefreshTime = Time.time;
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        if (players.Length == 0) {
+            return;
+        }
+        float distanceToClosestPlayer = float.MaxValue;
+        GameObject closestPlayer = players[0];
+        foreach (GameObject player in players) {
+            Vector2 distanceVec = player.transform.position - transform.position;
+            float distance = distanceVec.x + distanceVec.y;
+            if (distance < distanceToClosestPlayer) {
+                closestPlayer = player;
+            }
+        }
+        target = closestPlayer;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
+        UpdateTarget();
         ResetVibeDir();
     }
 
     void Update()
     {
+        if (Time.time > lastTargetRefreshTime + refreshTargetEverySec) {
+            UpdateTarget();
+        }
         if (Time.time > lastVibeDirChangeTime + changeVibeEverySec)
         {
             ResetVibeDir();
@@ -50,6 +80,10 @@ public class bubble : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (!target) {
+            return;
+        }
+
         Vector2 toDestination = (target.transform.position - transform.position).normalized;
 
         // Convert vectors to angles

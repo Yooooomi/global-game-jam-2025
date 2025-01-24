@@ -196,7 +196,7 @@ GameObject:
   - component: {fileID: 7281831662386567595}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -367,6 +367,7 @@ MonoBehaviour:
   firerate: 10
   bulletSpeed: 12
   bulletLifetime: 2
+  damage: 0
 --- !u!1 &7614891474815534213
 GameObject:
   m_ObjectHideFlags: 0

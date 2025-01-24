@@ -101,8 +101,8 @@ MonoBehaviour:
   target: {fileID: 0}
   speed: 1
   body: {fileID: 8311216739964587885}
+  refreshTargetEverySec: 2
   changeVibeEverySec: 0.5
-  vibeLerp: 0.5
   vibeIntensity: 100
 --- !u!50 &8311216739964587885
 Rigidbody2D:
@@ -127,7 +127,7 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 2
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
