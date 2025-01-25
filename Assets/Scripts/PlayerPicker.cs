@@ -27,7 +27,7 @@ public class PlayerPicker : MonoBehaviour
       return;
     }
 
-    if (!pickupable.CanPickup())
+    if (!pickupable.CanPickup(this))
     {
       return;
     }

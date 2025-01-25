@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class MagnetPickupable : MonoBehaviour, Pickupable
 {
-  public bool CanPickup()
+  public bool CanPickup(PlayerPicker from)
   {
     return true;
   }
@@ -12,7 +12,7 @@ public class MagnetPickupable : MonoBehaviour, Pickupable
     var orbs = FindObjectsOfType<ExperienceOrb>();
     foreach (var orb in orbs)
     {
-      orb.GoTo(picker.gameObject);
+      orb.GoTo(picker);
     }
     Destroy(gameObject);
   }

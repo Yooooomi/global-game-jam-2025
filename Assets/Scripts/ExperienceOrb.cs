@@ -4,7 +4,7 @@ public class ExperienceOrb : MonoBehaviour, Pickupable
 {
   public int experience;
   public float goingSpeed;
-  private GameObject going;
+  private PlayerPicker going;
 
   public void Init(int experience)
   {
@@ -12,12 +12,12 @@ public class ExperienceOrb : MonoBehaviour, Pickupable
     this.experience = experience;
   }
 
-  public bool CanPickup()
+  public bool CanPickup(PlayerPicker from)
   {
-    return going == null;
+    return going == null || going == from.gameObject;
   }
 
-  public void GoTo(GameObject going)
+  public void GoTo(PlayerPicker going)
   {
     this.going = going;
   }
