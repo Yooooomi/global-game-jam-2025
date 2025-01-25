@@ -4,16 +4,25 @@ using UnityEngine;
 
 public class BlowRangeRegistry : MonoBehaviour
 {
-    public List<Collider2D> inRange { get; private set; } = new List<Collider2D>();
     private Collider2D range;
+
+    private float lastInRangeFrameComputation = 0f;
+
+    private List<Collider2D> cachedInRange = new List<Collider2D>();
+
+    public List<Collider2D> GetInRange()
+    {
+        if (Time.time == lastInRangeFrameComputation)
+        {
+            return cachedInRange;
+        }
+        cachedInRange.Clear();
+        range.OverlapCollider(new ContactFilter2D().NoFilter(), cachedInRange);
+        return cachedInRange;
+    }
 
     private void Start()
     {
         range = GetComponent<Collider2D>();
-    }
-
-    private void FixedUpdate()
-    {
-        range.OverlapCollider(new ContactFilter2D().NoFilter(), inRange);
     }
 }
