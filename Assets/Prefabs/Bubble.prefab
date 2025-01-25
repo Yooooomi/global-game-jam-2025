@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3160249624191455374}
   - component: {fileID: 5252336613534436755}
   - component: {fileID: 8118043340874974568}
+  - component: {fileID: 6058752916270021569}
   m_Layer: 0
   m_Name: Bubble
   m_TagString: Untagged
@@ -141,6 +142,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a2a58ca606ed495f88aff1efefb8ccc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 1674357668024386248}
+  body: {fileID: 8311216739964587885}
+  selfCollider: {fileID: 3160249624191455374}
+  toPlayOnDeath: {fileID: 6058752916270021569}
+  dieAnimationTime: 0.25
+--- !u!114 &6058752916270021569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4446946438915858710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cdfe9ab68b99b749b43c132c83812ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clips:
+  - {fileID: 8300000, guid: 8943a97f5e2b0914cbf580a0fd9313ac, type: 3}
+  - {fileID: 8300000, guid: 503886b880ce71446a04cb835f66efb1, type: 3}
+  - {fileID: 8300000, guid: 08c692378c854744c8a712cab33b3740, type: 3}
+  - {fileID: 8300000, guid: 2d71b672e3b9e104189fdf54d1a44d75, type: 3}
+  - {fileID: 8300000, guid: ba83d678f7db8c4429f49ba019b07c2a, type: 3}
+  - {fileID: 8300000, guid: 2d38335c1bb615b4a8bf69f1111b172a, type: 3}
 --- !u!1 &5809945964474885361
 GameObject:
   m_ObjectHideFlags: 0
