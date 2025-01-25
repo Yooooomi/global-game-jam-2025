@@ -106,6 +106,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19651504e6ee24857896fbf63523f3d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &319546906770116761
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1846184777746490158}
+  - component: {fileID: 7300515905407578082}
+  m_Layer: 0
+  m_Name: Electrify
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1846184777746490158
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 319546906770116761}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 516788989360999964}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7300515905407578082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 319546906770116761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cdfe9ab68b99b749b43c132c83812ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clips:
+  - {fileID: 8300000, guid: 0f133c6f60a184b10969cd09c77ecad0, type: 3}
 --- !u!1 &486335672023827680
 GameObject:
   m_ObjectHideFlags: 0
@@ -5237,6 +5283,52 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &3216278488779693015
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6261434480715888445}
+  - component: {fileID: 8054699587230600084}
+  m_Layer: 0
+  m_Name: Firing
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6261434480715888445
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3216278488779693015}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 516788989360999964}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8054699587230600084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3216278488779693015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cdfe9ab68b99b749b43c132c83812ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clips:
+  - {fileID: 8300000, guid: 52a5b2319b8fc4ff6bdf2107f9e9622f, type: 3}
 --- !u!1 &4497067190441489238
 GameObject:
   m_ObjectHideFlags: 0
@@ -6096,6 +6188,8 @@ Transform:
   - {fileID: 8070518258220209441}
   - {fileID: 2096802548652816252}
   - {fileID: 2868654274741610270}
+  - {fileID: 1846184777746490158}
+  - {fileID: 6261434480715888445}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4961729714571687856
@@ -6219,6 +6313,8 @@ MonoBehaviour:
   bulletLifetime: 2
   baseDamage: 10
   spreadAngle: 15
+  electrify: {fileID: 7300515905407578082}
+  firing: {fileID: 8054699587230600084}
 --- !u!114 &1539737967076536185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6285,19 +6381,19 @@ MonoBehaviour:
     name: Pickup radius
     values:
     - 10
-    - 20
-    - 30
-    - 50
+    - 25
+    - 40
+    - 70
     description: You pick up resources {{diffValue}}% further
-  - key: aoe
+  - key: electrify
     name: Area of effect
     values:
-    - 1
-    - 2
-    - 3
-    - 4
-    description: Your bullets creates lightning thats jumps on a random enemy in
-      {{value}}m
+    - 20
+    - 40
+    - 65
+    - 100
+    description: Your bullets have {{value}}% chance of triggering a lightning to
+      another bubble
   - key: explosion_radius
     name: Explosion radius
     values:

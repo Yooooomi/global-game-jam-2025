@@ -27,6 +27,11 @@ public class PlayerWeapon : MonoBehaviour
 
     public OnKillEvent onKillEvent = new();
 
+    [SerializeField]
+    private RandomSound electrify;
+    [SerializeField]
+    private RandomSound firing;
+
     private void Start()
     {
         upgrades = GetComponent<PlayerUpgrades>();
@@ -49,21 +54,41 @@ public class PlayerWeapon : MonoBehaviour
         return 1 + Mathf.FloorToInt(upgrades.GetValueByKey("projectile_count"));
     }
 
-    private IEnumerator LightningCoroutine(List<Transform> transforms)
+    private IEnumerator LightningCoroutine(Transform target)
     {
-        var elec = Instantiate(electric, transforms[0].position - Vector3.forward * 5f, Quaternion.identity);
+        var elec = Instantiate(electric, target.position - Vector3.forward * 5f, Quaternion.identity);
         var trailRenderer = elec.GetComponent<TrailRenderer>();
 
         var speed = 45f;
         var randomness = .30f;
 
         // Start at the first position
-        Vector3 currentPosition = transforms[0].position;
+        Vector3 currentPosition = target.position;
         trailRenderer.transform.position = currentPosition + Vector3.forward * -5f;
 
-        for (int i = 1; i < transforms.Count; i++)
+        var probability = upgrades.GetValueByKey("electrify") / 100f;
+
+        var history = new HashSet<int>
         {
-            Vector3 nextPosition = transforms[i].position;
+            target.GetInstanceID()
+        };
+
+        while (true)
+        {
+            var colliders = Physics2D.OverlapCircleAll(target.position, 2.5f);
+            var first = colliders
+                .OrderBy(e => Vector3.Distance(target.position, e.transform.position))
+                .FirstOrDefault(e => !history.Contains(e.transform.GetInstanceID()) && e.GetComponent<Hittable>() != null);
+
+            if (first == null)
+            {
+                break;
+            }
+
+            history.Add(first.transform.GetInstanceID());
+            target = first.transform;
+
+            Vector3 nextPosition = target.position;
             float distance = Vector3.Distance(currentPosition, nextPosition);
             float timeToMove = distance / speed;
 
@@ -89,43 +114,20 @@ public class PlayerWeapon : MonoBehaviour
                 yield return null;
             }
 
+            if (target.TryGetComponent<Hittable>(out var hittable))
+            {
+                hittable.Hit(GetDamage());
+                electrify.PlayRandom(.3f);
+            }
             // Set the position exactly at the next point
             currentPosition = nextPosition;
             trailRenderer.transform.position = currentPosition + Vector3.forward * -5f;
-        }
-    }
 
-    private void Electrize(Transform target, HashSet<int> history)
-    {
-        history.Add(target.GetInstanceID());
-
-        var targets = new List<Transform>() { target };
-
-        // upgrades.GetValueByKey("aoe");
-
-        while (true)
-        {
-            var colliders = Physics2D.OverlapCircleAll(target.position, 2.5f);
-            var first = colliders
-                .OrderBy(e => Vector3.Distance(target.position, e.transform.position))
-                .FirstOrDefault(e => !history.Contains(e.transform.GetInstanceID()) && e.GetComponent<Hittable>() != null);
-
-
-            if (first == null)
-            {
-                break;
-            }
-
-            history.Add(first.transform.GetInstanceID());
-            target = first.transform;
-            targets.Add(target);
-
-            // if (!first.TryGetComponent<Hittable>(out var hittable))
+            // if (Random.Range(0f, 1f) > probability)
             // {
             //     break;
             // }
         }
-        StartCoroutine(LightningCoroutine(targets));
     }
 
     private void OnHit(int experience, GameObject go)
@@ -134,11 +136,10 @@ public class PlayerWeapon : MonoBehaviour
         {
             onKillEvent.Invoke(experience);
         }
-        // if (upgrades.GetValueByKey("aoe") == -1f)
-        // {
-        //     return;
-        // }
-        Electrize(go.transform, new HashSet<int>());
+        StartCoroutine(LightningCoroutine(go.transform));
+        if (upgrades.GetValueByKey("electrify") != -1f)
+        {
+        }
     }
 
     private void Update()
@@ -156,6 +157,8 @@ public class PlayerWeapon : MonoBehaviour
             return;
         }
         lastShoot = Time.time;
+
+        firing.PlayRandom();
 
         var halfSpread = spreadAngle / 2f;
         var projectileCount = GetProjectileCount();
