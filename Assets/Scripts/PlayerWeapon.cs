@@ -37,6 +37,6 @@ public class PlayerWeapon : MonoBehaviour
             Destroy(b);
             return;
         }
-        bull.Init(transform.up, bulletSpeed, bulletLifetime, damage);
+        bull.Init(canon.transform.up, bulletSpeed, bulletLifetime, damage);
     }
 }
