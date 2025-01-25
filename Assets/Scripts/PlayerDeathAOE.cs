@@ -26,7 +26,7 @@ public class PlayerDeathAOE : MonoBehaviour
     {
       foreach (var item in hits)
       {
-        if (!item.TryGetComponent<Blowable>(out var blowable))
+        if (item == null || !item.TryGetComponent<Blowable>(out var blowable))
         {
           continue;
         }
