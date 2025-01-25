@@ -42,7 +42,7 @@ public class PlayerUpgradeProposal : MonoBehaviour
     {
       var thisProposed = proposed[i];
       cards[i].gameObject.SetActive(true);
-      cards[i].Init(thisProposed.name, upgrades.GetDescriptionByKey(thisProposed.key));
+      cards[i].Init(thisProposed.name, upgrades.GetDescriptionByKey(thisProposed.key), upgrades.GetLevelByKey(thisProposed.key) + 1);
     }
     for (; i < 3; i += 1)
     {
