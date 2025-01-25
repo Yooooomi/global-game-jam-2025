@@ -14,24 +14,20 @@ public class BubbleHittable : MonoBehaviour, Hittable
     [SerializeField]
     private float dieAnimationTime;
 
-    private float killAtTime = 0f;
+    public int experience;
 
-    private void Kill() {
+    private void Kill()
+    {
         selfCollider.enabled = false;
         body.constraints = RigidbodyConstraints2D.FreezeAll;
-        killAtTime = Time.time + dieAnimationTime;
         animator.SetBool("Dead", true);
         toPlayOnDeath.PlayRandom();
+        Destroy(gameObject, dieAnimationTime);
     }
 
-    public void Hit(float damage)
+    public int Hit(float damage)
     {
         Kill();
-    }
-
-    public void Update() {
-        if (killAtTime != 0 && Time.time > killAtTime) {
-            Destroy(gameObject);
-        }
+        return experience;
     }
 }

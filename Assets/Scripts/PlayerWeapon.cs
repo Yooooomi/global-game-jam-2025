@@ -1,7 +1,12 @@
 using UnityEngine;
+using UnityEngine.Events;
+
+public class OnKillEvent : UnityEvent<int> { }
 
 public class PlayerWeapon : MonoBehaviour
 {
+    private PlayerUpgrades upgrades;
+    private PlayerStats stats;
     private PlayerControls controls;
     [SerializeField]
     private GameObject bullet;
@@ -9,19 +14,37 @@ public class PlayerWeapon : MonoBehaviour
     private Transform canon;
 
     private float lastShoot;
-    public float firerate;
+    public float baseFirerate;
     public float bulletSpeed;
     public float bulletLifetime;
     public float damage;
 
+    public OnKillEvent onKillEvent = new();
+
     private void Start()
     {
+        upgrades = GetComponent<PlayerUpgrades>();
+        stats = GetComponent<PlayerStats>();
         controls = GetComponent<PlayerControls>();
+    }
+
+    private float GetFirerate()
+    {
+        return baseFirerate + upgrades.GetValueByKey("firerate");
+    }
+
+    private void OnKill(int experience)
+    {
+        onKillEvent.Invoke(experience);
     }
 
     private void Update()
     {
-        if (Time.time < lastShoot + (1f / firerate))
+        if (!stats.alive)
+        {
+            return;
+        }
+        if (Time.time < lastShoot + (1f / GetFirerate()))
         {
             return;
         }
@@ -37,6 +60,6 @@ public class PlayerWeapon : MonoBehaviour
             Destroy(b);
             return;
         }
-        bull.Init(canon.transform.up, bulletSpeed, bulletLifetime, damage);
+        bull.Init(canon.transform.up, bulletSpeed, bulletLifetime, damage, OnKill);
     }
 }

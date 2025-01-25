@@ -2,32 +2,77 @@ using UnityEngine;
 
 public class PlayerBlower : MonoBehaviour
 {
+    private PlayerStats stats;
     private BlowRangeRegistry registry;
     private PlayerControls controls;
     public float maxForce;
     public float forceDepletionPerMeter;
-    [SerializeField]
-    private ParticleSystem particleSystem;
+    public bool blowing;
+
+    public float maxSeconds;
+    public float resplenishCooldownAfterUse;
+    public float resplenishPerSeconds;
+    public float energy { get; private set; }
+    private float lastStopped;
+
 
     private void Start()
     {
+        energy = maxSeconds;
+        stats = GetComponent<PlayerStats>();
         registry = GetComponentInChildren<BlowRangeRegistry>();
         controls = GetComponent<PlayerControls>();
     }
 
-    private void FixedUpdate()
+    private void MarkStopped()
     {
-        if (!controls.blow)
+        if (blowing == false)
         {
-            particleSystem.Stop();
             return;
         }
-        if (!particleSystem.isPlaying)
+        blowing = false;
+        lastStopped = Time.time;
+    }
+
+    private void Update()
+    {
+        if (lastStopped + resplenishCooldownAfterUse > Time.time)
         {
-            particleSystem.Play();
-            var main = particleSystem.main;
-            main.startSpeed = 20f;
+            return;
         }
+        if (blowing)
+        {
+            return;
+        }
+        energy += resplenishPerSeconds * Time.deltaTime;
+        if (energy > maxSeconds)
+        {
+            energy = maxSeconds;
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (!stats.alive)
+        {
+            return;
+        }
+        if (!controls.blow || energy == 0)
+        {
+            MarkStopped();
+            return;
+        }
+
+        energy -= Time.deltaTime;
+
+        if (energy < 0)
+        {
+            energy = 0;
+            MarkStopped();
+            return;
+        }
+
+        blowing = true;
 
         foreach (var item in registry.GetInRange())
         {

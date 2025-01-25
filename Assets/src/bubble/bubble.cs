@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class bubble : MonoBehaviour
@@ -28,7 +25,8 @@ public class bubble : MonoBehaviour
 
     private void ResetVibeDir()
     {
-        if (!target) {
+        if (!target)
+        {
             return;
         }
         Vector2 toDest = (target.transform.position - transform.position).normalized;
@@ -42,18 +40,30 @@ public class bubble : MonoBehaviour
         vibeDir = newVibe.normalized;
     }
 
-    private void UpdateTarget() {
+    private void UpdateTarget()
+    {
         lastTargetRefreshTime = Time.time;
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-        if (players.Length == 0) {
+        if (players.Length == 0)
+        {
             return;
         }
         float distanceToClosestPlayer = float.MaxValue;
         GameObject closestPlayer = players[0];
-        foreach (GameObject player in players) {
+        foreach (GameObject player in players)
+        {
+            if (!player.TryGetComponent<PlayerStats>(out var stats))
+            {
+                continue;
+            }
+            if (!stats.alive)
+            {
+                continue;
+            }
             Vector2 distanceVec = player.transform.position - transform.position;
             float distance = distanceVec.x + distanceVec.y;
-            if (distance < distanceToClosestPlayer) {
+            if (distance < distanceToClosestPlayer)
+            {
                 closestPlayer = player;
             }
         }
@@ -69,7 +79,8 @@ public class bubble : MonoBehaviour
 
     void Update()
     {
-        if (Time.time > lastTargetRefreshTime + refreshTargetEverySec) {
+        if (Time.time > lastTargetRefreshTime + refreshTargetEverySec)
+        {
             UpdateTarget();
         }
         if (Time.time > lastVibeDirChangeTime + changeVibeEverySec)
@@ -80,7 +91,8 @@ public class bubble : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!target) {
+        if (!target)
+        {
             return;
         }
 
