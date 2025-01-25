@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -20,7 +18,8 @@ public class PlayerControls : MonoBehaviour
     {
         input = GetComponent<PlayerInput>();
         camera = GameObject.Find("Main Camera").GetComponent<Camera>();
-        isKeyboardAndMouse = input.GetDevice<Mouse>() != null;
+        var firstDevice = input.devices[0];
+        isKeyboardAndMouse = firstDevice != null && (firstDevice.name == "Mouse" || firstDevice.name == "Keyboard");
     }
 
     private void OnMove(InputValue value)
@@ -30,10 +29,13 @@ public class PlayerControls : MonoBehaviour
 
     private void Update()
     {
+        if (!isKeyboardAndMouse)
+        {
+            return;
+        }
         var mousePosition = Mouse.current.position.value;
-        Vector2 playerViewportPoint = camera.WorldToViewportPoint(transform.position);
-        Vector2 mouseViewportPoint = camera.ScreenToViewportPoint(mousePosition);
-        var diff = mouseViewportPoint - playerViewportPoint;
+        Vector2 playerViewportPoint = camera.WorldToScreenPoint(transform.position);
+        var diff = mousePosition - playerViewportPoint;
         look = diff;
     }
 
@@ -48,11 +50,11 @@ public class PlayerControls : MonoBehaviour
 
     private void OnBlow(InputValue value)
     {
-        blow = value.Get<float>() > 0;
+        blow = value.Get<float>() > 0.5f;
     }
 
     private void OnShoot(InputValue value)
     {
-        shoot = value.Get<float>() > 0;
+        shoot = value.Get<float>() > 0.5f;
     }
 }

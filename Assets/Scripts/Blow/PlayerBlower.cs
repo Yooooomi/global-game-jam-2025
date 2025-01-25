@@ -19,7 +19,7 @@ public class PlayerBlower : MonoBehaviour
         {
             return;
         }
-        foreach (var item in registry.inRange)
+        foreach (var item in registry.GetInRange())
         {
             if (!item.TryGetComponent<Blowable>(out var blowable))
             {
