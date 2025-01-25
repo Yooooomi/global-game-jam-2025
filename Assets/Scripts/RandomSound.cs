@@ -5,11 +5,13 @@ public class RandomSound : MonoBehaviour
     [SerializeField]
     private AudioClip[] clips;
 
-    private AudioClip GetClip() {
+    private AudioClip GetClip()
+    {
         return clips[Random.Range(0, clips.Length)];
     }
 
-    public void PlayRandom() {
-        AudioSource.PlayClipAtPoint(GetClip(), transform.position);
+    public void PlayRandom(float volume = 1f)
+    {
+        AudioSource.PlayClipAtPoint(GetClip(), transform.position, volume);
     }
 }
