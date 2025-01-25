@@ -1,7 +1,5 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.InputSystem;
 
 public class OnLevelGainedEvent : UnityEvent { }
 
@@ -11,12 +9,6 @@ public class PlayerExperience : MonoBehaviour
   public int currentLevel = 0;
   private int currentExperience = 0;
   public OnLevelGainedEvent onLevelGainedEvent = new();
-
-  private void OnPlayerJoined(PlayerInput input)
-  {
-    var weapon = input.gameObject.GetComponent<PlayerWeapon>();
-    weapon.onKillEvent.AddListener(OnKill);
-  }
 
   private bool CheckLevelPassed()
   {
@@ -30,7 +22,7 @@ public class PlayerExperience : MonoBehaviour
     return false;
   }
 
-  public void OnKill(int experience)
+  public void Grant(int experience)
   {
     currentExperience += experience;
     var passedLevel = CheckLevelPassed();

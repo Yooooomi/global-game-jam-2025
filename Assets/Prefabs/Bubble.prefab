@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 8118043340874974568}
   - component: {fileID: 6058752916270021569}
   - component: {fileID: 2492794800192173163}
+  - component: {fileID: 1199174792097042760}
   m_Layer: 0
   m_Name: Bubble
   m_TagString: Untagged
@@ -147,9 +148,6 @@ MonoBehaviour:
   selfCollider: {fileID: 3160249624191455374}
   toPlayOnDeath: {fileID: 6058752916270021569}
   dieDelaySec: 0.25
-  OnHealthChanged:
-    m_PersistentCalls:
-      m_Calls: []
   hp: 5
   experience: 10
 --- !u!114 &6058752916270021569
@@ -186,6 +184,19 @@ MonoBehaviour:
   attackSpeed: 1
   damage: 20
   range: 1.5
+--- !u!114 &1199174792097042760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4446946438915858710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bd9f96e649fe4dc191a57c22dc9be11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  experienceOrbPrefab: {fileID: 7624542758127195231, guid: a39e24b8f17a74682bf2d9e534b8fbd7, type: 3}
 --- !u!1 &5809945964474885361
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.Events;
 
+public class OnBubbleHealthChanged : UnityEvent<float> { }
+public class OnBubbleDeath : UnityEvent { }
+
 public class BubbleHittable : MonoBehaviour, Hittable
 {
 
@@ -14,7 +17,8 @@ public class BubbleHittable : MonoBehaviour, Hittable
     [SerializeField]
     private float dieDelaySec;
 
-    public UnityEvent<float> OnHealthChanged;
+    public OnBubbleHealthChanged onHealthChanged = new();
+    public OnBubbleDeath onBubbleDeath = new();
     public float hp;
     public int experience;
 
@@ -24,18 +28,21 @@ public class BubbleHittable : MonoBehaviour, Hittable
         body.constraints = RigidbodyConstraints2D.FreezeAll;
         toPlayOnDeath.PlayRandom();
         Destroy(gameObject, dieDelaySec);
+        onBubbleDeath.Invoke();
     }
 
-    public void SetInitialHp(float initialHp) {
+    public void SetInitialHp(float initialHp)
+    {
         hp = initialHp;
-        OnHealthChanged.Invoke(hp);
+        onHealthChanged.Invoke(hp);
     }
 
     public int Hit(float damage)
     {
         hp -= damage;
-        OnHealthChanged.Invoke(hp);
-        if (hp <= 0) {
+        onHealthChanged.Invoke(hp);
+        if (hp <= 0)
+        {
             Kill();
             return experience;
         }

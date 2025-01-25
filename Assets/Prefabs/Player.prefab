@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4749868798126455164}
   - component: {fileID: 8243610255121058869}
   - component: {fileID: 5156802519067963578}
+  - component: {fileID: 3596557457621316305}
   m_Layer: 0
   m_Name: BlowAOE
   m_TagString: Untagged
@@ -91,6 +92,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e13a53eff120a4b73a375217d7b0180d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3596557457621316305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 279074971930843633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19651504e6ee24857896fbf63523f3d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &486335672023827680
@@ -5482,6 +5495,89 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &4891250971543994229
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2868654274741610270}
+  - component: {fileID: 9222519826400633398}
+  - component: {fileID: 1261504675973455656}
+  m_Layer: 0
+  m_Name: Picker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2868654274741610270
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4891250971543994229}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 516788989360999964}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9222519826400633398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4891250971543994229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3b7669bf7f8247aab00e8355e520ebe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
+  pickupRadius: 2.5
+  pickupRange: 0.2
+--- !u!58 &1261504675973455656
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4891250971543994229}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 2.5
 --- !u!1 &5259258488932986158
 GameObject:
   m_ObjectHideFlags: 0
@@ -5999,6 +6095,7 @@ Transform:
   - {fileID: 8280510930760013567}
   - {fileID: 8070518258220209441}
   - {fileID: 2096802548652816252}
+  - {fileID: 2868654274741610270}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4961729714571687856
@@ -6097,8 +6194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a96cdef5f172b49b087cb784dd545391, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxForce: 10
-  forceDepletionPerMeter: 1
+  baseBlowerRange: 5
   blowing: 0
   maxSeconds: 3
   resplenishCooldownAfterUse: 1
@@ -6117,10 +6213,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 9045171342814083422, guid: ce67224c087e442948f2668cee8b0a85, type: 3}
   canon: {fileID: 5775158034167366412}
+  electric: {fileID: 2118316003964125212, guid: 56aa4ae477564424eb39fd4f71784f4e, type: 3}
   baseFirerate: 2
   bulletSpeed: 14
   bulletLifetime: 2
-  damage: 1
+  baseDamage: 10
+  spreadAngle: 15
 --- !u!114 &1539737967076536185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6134,7 +6232,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseMaxHealth: 100
-  healthResplenishPerSeconds: 5
+  baseHealthResplenishPerSeconds: 0
   healthResplenishCooldown: 1.5
   alive: 1
   respawnTime: 9
@@ -6175,6 +6273,63 @@ MonoBehaviour:
     - 50
     - 80
     description: Grow some muscles and get tankier, gain {{diffValue}} max health
+  - key: projectile_count
+    name: Projectile count
+    values:
+    - 0
+    - 1
+    - 1
+    - 2
+    description: Your weapon throws {{diffValue}} projectiles
+  - key: pickup_radius
+    name: Pickup radius
+    values:
+    - 10
+    - 20
+    - 30
+    - 50
+    description: You pick up resources {{diffValue}}% further
+  - key: aoe
+    name: Area of effect
+    values:
+    - 1
+    - 2
+    - 3
+    - 4
+    description: Your bullets creates lightning thats jumps on a random enemy in
+      {{value}}m
+  - key: explosion_radius
+    name: Explosion radius
+    values:
+    - 1
+    - 2
+    - 3
+    - 4
+    description: Your bullets explode, creating a {{value}}m blast
+  - key: damage
+    name: Damage
+    values:
+    - 15
+    - 30
+    - 50
+    - 80
+    description: Your weapon does {{diffValue}} more damage
+  - key: blower
+    name: Blower
+    values:
+    - 1
+    - 2
+    - 3
+    - 4
+    description: You blow with more force and further
+  - key: health_regen
+    name: Health regen
+    values:
+    - 2
+    - 4
+    - 6
+    - 7
+    description: You regen {{diffValue}} more health per seconds
 --- !u!58 &6541797345458630516
 CircleCollider2D:
   m_ObjectHideFlags: 0

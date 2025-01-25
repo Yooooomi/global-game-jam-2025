@@ -12,7 +12,7 @@ public class Bullet : MonoBehaviour
     private Collider2D myCollider;
     private SpriteRenderer sprite;
     private ParticleSystem particleSystem;
-    private Action<int> onKill;
+    private Action<int, GameObject> onHit;
 
     private void Start()
     {
@@ -21,14 +21,14 @@ public class Bullet : MonoBehaviour
         particleSystem = GetComponentInChildren<ParticleSystem>();
     }
 
-    public void Init(Vector3 direction, float speed, float lifetime, float damage, Action<int> onKill)
+    public void Init(Vector3 direction, float speed, float lifetime, float damage, Action<int, GameObject> onHit)
     {
         birth = Time.time;
         this.direction = direction;
         this.speed = speed;
         this.lifetime = lifetime;
         this.damage = damage;
-        this.onKill = onKill;
+        this.onHit = onHit;
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, angle);
@@ -55,10 +55,7 @@ public class Bullet : MonoBehaviour
             return;
         }
         var experience = hittable.Hit(damage);
-        if (experience > 0)
-        {
-            onKill(experience);
-        }
+        onHit(experience, collider.gameObject);
         Destroy(gameObject, 5f);
         sprite.enabled = false;
         myCollider.enabled = false;

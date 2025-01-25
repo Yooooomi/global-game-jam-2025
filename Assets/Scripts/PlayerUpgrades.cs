@@ -87,3 +87,11 @@ public class PlayerUpgrades : MonoBehaviour
     upgraded[key] += 1;
   }
 }
+
+// nb projectile DONE
+// pickup radius DONE
+// aoe
+// explosion radius
+// damage DONE
+// blow plus fort plus de range DONE
+// health regen DONE

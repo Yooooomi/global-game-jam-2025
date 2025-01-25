@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class PlayerBlower : MonoBehaviour
 {
+    private PlayerUpgrades playerUpgrades;
     private PlayerStats stats;
     private BlowRangeRegistry registry;
     private PlayerControls controls;
-    public float maxForce;
-    public float forceDepletionPerMeter;
+    public float baseBlowerRange;
     public bool blowing;
 
     public float maxSeconds;
@@ -19,6 +19,7 @@ public class PlayerBlower : MonoBehaviour
     private void Start()
     {
         energy = maxSeconds;
+        playerUpgrades = GetComponent<PlayerUpgrades>();
         stats = GetComponent<PlayerStats>();
         registry = GetComponentInChildren<BlowRangeRegistry>();
         controls = GetComponent<PlayerControls>();
@@ -51,6 +52,11 @@ public class PlayerBlower : MonoBehaviour
         }
     }
 
+    public float GetBlowerRange()
+    {
+        return baseBlowerRange + playerUpgrades.GetValueByKey("blower");
+    }
+
     private void FixedUpdate()
     {
         if (!stats.alive)
@@ -81,10 +87,10 @@ public class PlayerBlower : MonoBehaviour
                 continue;
             }
             var distance = Vector3.Distance(transform.position, item.transform.position);
-            var force = maxForce - distance * forceDepletionPerMeter;
+            var force = GetBlowerRange() - distance;
             if (force > 0)
             {
-                blowable.Blow(transform.position, force * Time.deltaTime);
+                blowable.Blow(transform.position, distance * Time.deltaTime);
             }
         }
     }

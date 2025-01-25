@@ -10,7 +10,7 @@ public class PlayerStats : MonoBehaviour, Hittable
 
   public float health { get; private set; }
   public float baseMaxHealth;
-  public float healthResplenishPerSeconds;
+  public float baseHealthResplenishPerSeconds;
   public float healthResplenishCooldown;
   public bool alive;
   public float cooldownUntilAlive { get; private set; }
@@ -32,6 +32,11 @@ public class PlayerStats : MonoBehaviour, Hittable
     upgrades = GetComponent<PlayerUpgrades>();
   }
 
+  private float GetHealthResplenishPerSecond()
+  {
+    return baseHealthResplenishPerSeconds + upgrades.GetValueByKey("health_regen");
+  }
+
   private void ResplenishHealth()
   {
     if (!alive)
@@ -46,7 +51,7 @@ public class PlayerStats : MonoBehaviour, Hittable
     {
       return;
     }
-    health += healthResplenishPerSeconds * Time.deltaTime;
+    health += GetHealthResplenishPerSecond() * Time.deltaTime;
     if (health > GetMaxHealth())
     {
       health = GetMaxHealth();
