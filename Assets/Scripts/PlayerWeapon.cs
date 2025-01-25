@@ -80,7 +80,7 @@ public class PlayerWeapon : MonoBehaviour
             var colliders = Physics2D.OverlapCircleAll(target.position, 2.5f);
             var first = colliders
                 .OrderBy(e => Vector3.Distance(target.position, e.transform.position))
-                .FirstOrDefault(e => !history.Contains(e.transform.GetInstanceID()) && e.GetComponent<Hittable>() != null);
+                .FirstOrDefault(e => !e.gameObject.CompareTag("Player") && !history.Contains(e.transform.GetInstanceID()) && e.GetComponent<Hittable>() != null);
 
             if (first == null)
             {
@@ -114,6 +114,11 @@ public class PlayerWeapon : MonoBehaviour
                 trailRenderer.transform.position = interpolatedPosition + randomOffset + Vector3.forward * -5f;
 
                 yield return null;
+            }
+
+            if (target == null)
+            {
+                break;
             }
 
             if (target.TryGetComponent<Hittable>(out var hittable))

@@ -6331,7 +6331,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseMaxHealth: 100
-  baseHealthResplenishPerSeconds: 0
+  baseHealthResplenishPerSeconds: 1
   healthResplenishCooldown: 1.5
   alive: 1
   respawnTime: 9
@@ -6424,10 +6424,10 @@ MonoBehaviour:
   - key: health_regen
     name: Health regen
     values:
+    - 1
     - 2
+    - 3
     - 4
-    - 6
-    - 7
     description: You regen {{diffValue}} more health per seconds
 --- !u!58 &6541797345458630516
 CircleCollider2D:
