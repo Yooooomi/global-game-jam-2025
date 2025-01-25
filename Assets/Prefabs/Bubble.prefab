@@ -151,7 +151,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   hp: 5
-  experience: 1
+  experience: 10
 --- !u!114 &6058752916270021569
 MonoBehaviour:
   m_ObjectHideFlags: 0

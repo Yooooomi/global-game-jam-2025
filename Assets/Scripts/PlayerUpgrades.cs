@@ -26,11 +26,10 @@ public class PlayerUpgrades : MonoBehaviour
 
   private float GetValueByKeyAndLevel(string key, int level)
   {
-    var upgrade = GetByKey(key);
-    if (upgrade == null)
-    {
+    if (level == -1) {
       return 0f;
     }
+    var upgrade = GetByKey(key);
     return upgrade.values[level];
   }
 
@@ -38,7 +37,7 @@ public class PlayerUpgrades : MonoBehaviour
   {
     if (!upgraded.TryGetValue(key, out int level))
     {
-      return 0;
+      return -1;
     }
     return level;
   }

@@ -508,7 +508,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c7d2e7b230024aa982ca5e7413d2cb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  additionalXpPerLevel: 3
+  additionalXpPerLevel: 300
   currentLevel: 0
 --- !u!1 &519420028
 GameObject:
@@ -908,6 +908,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 519420032}
     m_Modifications:
+    - target: {fileID: -509625881902169740, guid: 05936fcd422153848b296d84b41f2de1, type: 3}
+      propertyPath: spawnEvery
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -509625881902169740, guid: 05936fcd422153848b296d84b41f2de1, type: 3}
+      propertyPath: nextStepEvery
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: -509625881902169740, guid: 05936fcd422153848b296d84b41f2de1, type: 3}
       propertyPath: spawnEverySec
       value: 2.1
@@ -1429,33 +1437,13 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2523544072434693733, guid: 32f90302766eb41e0a124f83b8b1d39e, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0.519
-      objectReference: {fileID: 0}
-    - target: {fileID: 2523544072434693733, guid: 32f90302766eb41e0a124f83b8b1d39e, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2523544072434693733, guid: 32f90302766eb41e0a124f83b8b1d39e, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0.519
-      objectReference: {fileID: 0}
     - target: {fileID: 6212497894552781833, guid: 32f90302766eb41e0a124f83b8b1d39e, type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519420031}
-    - target: {fileID: 6541797345458630516, guid: 32f90302766eb41e0a124f83b8b1d39e, type: 3}
-      propertyPath: m_Radius
-      value: 0.47
-      objectReference: {fileID: 0}
     - target: {fileID: 6832962386625518973, guid: 32f90302766eb41e0a124f83b8b1d39e, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 7281831662386567595, guid: 32f90302766eb41e0a124f83b8b1d39e, type: 3}
-      propertyPath: baseFirerate
-      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 9085832667068774231, guid: 32f90302766eb41e0a124f83b8b1d39e, type: 3}
       propertyPath: m_AnchorMax.x

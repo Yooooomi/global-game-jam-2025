@@ -6117,7 +6117,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 9045171342814083422, guid: ce67224c087e442948f2668cee8b0a85, type: 3}
   canon: {fileID: 5775158034167366412}
-  baseFirerate: 0
+  baseFirerate: 2
   bulletSpeed: 14
   bulletLifetime: 2
   damage: 1
@@ -6162,10 +6162,10 @@ MonoBehaviour:
   - key: firerate
     name: Firerate
     values:
+    - 0.5
+    - 1
+    - 1.5
     - 2
-    - 4
-    - 7
-    - 12
     description: Go boom boom boom faster, shoot {{diffValue}} more bullets per second
   - key: max_health
     name: Max health
@@ -6209,7 +6209,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.47
 --- !u!1 &7475456069639035772
 GameObject:
   m_ObjectHideFlags: 0
