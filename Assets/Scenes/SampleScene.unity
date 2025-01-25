@@ -225,7 +225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86acffa391ccc4337948959ae2fc9081, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerUpgradeProposalPrefab: {fileID: 5739640237477195016, guid: e09c64e1a0aec404ebc5beb58a25a96f, type: 3}
+  playerUpgradeProposal: {fileID: 1129721135}
 --- !u!114 &385288141
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -482,6 +482,74 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2725588892655560477, guid: 05936fcd422153848b296d84b41f2de1, type: 3}
   m_PrefabInstance: {fileID: 1031407272}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1129721134
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4584832038910512503, guid: e09c64e1a0aec404ebc5beb58a25a96f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 390.68292
+      objectReference: {fileID: 0}
+    - target: {fileID: 4584832038910512503, guid: e09c64e1a0aec404ebc5beb58a25a96f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 222.89047
+      objectReference: {fileID: 0}
+    - target: {fileID: 4584832038910512503, guid: e09c64e1a0aec404ebc5beb58a25a96f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.4153833
+      objectReference: {fileID: 0}
+    - target: {fileID: 4584832038910512503, guid: e09c64e1a0aec404ebc5beb58a25a96f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4584832038910512503, guid: e09c64e1a0aec404ebc5beb58a25a96f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4584832038910512503, guid: e09c64e1a0aec404ebc5beb58a25a96f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4584832038910512503, guid: e09c64e1a0aec404ebc5beb58a25a96f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4584832038910512503, guid: e09c64e1a0aec404ebc5beb58a25a96f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4584832038910512503, guid: e09c64e1a0aec404ebc5beb58a25a96f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4584832038910512503, guid: e09c64e1a0aec404ebc5beb58a25a96f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5739640237477195016, guid: e09c64e1a0aec404ebc5beb58a25a96f, type: 3}
+      propertyPath: m_Name
+      value: PlayerUpgradeWholeProposal
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e09c64e1a0aec404ebc5beb58a25a96f, type: 3}
+--- !u!114 &1129721135 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6892407437067371354, guid: e09c64e1a0aec404ebc5beb58a25a96f, type: 3}
+  m_PrefabInstance: {fileID: 1129721134}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2350d4eccbb848edba8fed29a89055e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2090783329
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -567,3 +635,4 @@ SceneRoots:
   - {fileID: 385288138}
   - {fileID: 2090783329}
   - {fileID: 832814886}
+  - {fileID: 1129721134}

@@ -6,7 +6,7 @@ public class PlayerUpgradeProposalUi : MonoBehaviour
 {
   private PlayerExperience playerExperience;
   [SerializeField]
-  private GameObject playerUpgradeProposalPrefab;
+  private PlayerUpgradeWholeProposal playerUpgradeProposal;
   private List<PlayerUpgrades> upgrades = new();
 
   private void Start()
@@ -35,11 +35,7 @@ public class PlayerUpgradeProposalUi : MonoBehaviour
 
   private void OnLevelGained()
   {
-    var go = Instantiate(playerUpgradeProposalPrefab, Vector3.zero, Quaternion.identity);
-    if (!go.TryGetComponent<PlayerUpgradeWholeProposal>(out var proposal))
-    {
-      return;
-    }
-    proposal.Init(upgrades);
+    playerUpgradeProposal.gameObject.SetActive(true);
+    playerUpgradeProposal.Init(upgrades);
   }
 }
