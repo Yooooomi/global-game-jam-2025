@@ -19,6 +19,8 @@ public class BubbleSpawner : MonoBehaviour
     {
         Blue,
         Purple,
+        Orange,
+        Red,
     };
     [SerializeField]
     private List<BubbleSpec> bubble_specs;

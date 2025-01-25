@@ -48,8 +48,12 @@ MonoBehaviour:
   bubble_specs:
   - hp: 1
     kind: 0
-  - hp: 3
+  - hp: 5
     kind: 1
+  - hp: 20
+    kind: 2
+  - hp: 100
+    kind: 3
   steps:
   - bubbles:
     - kind: 0
@@ -64,6 +68,22 @@ MonoBehaviour:
       numberPerBatch: 20
     - kind: 1
       numberPerBatch: 10
+  - bubbles:
+    - kind: 0
+      numberPerBatch: 20
+    - kind: 1
+      numberPerBatch: 20
+    - kind: 2
+      numberPerBatch: 10
+  - bubbles:
+    - kind: 0
+      numberPerBatch: 20
+    - kind: 1
+      numberPerBatch: 20
+    - kind: 2
+      numberPerBatch: 20
+    - kind: 3
+      numberPerBatch: 1
   spawnEvery: 2
   nextStepEvery: 30
   minRadius: 25

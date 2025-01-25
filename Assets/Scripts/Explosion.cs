@@ -13,7 +13,7 @@ public class Explosion : MonoBehaviour
         foreach (Collider2D collider in hits)
         {
             Hittable hittable = collider.GetComponent<Hittable>();
-            if (hittable == null)
+            if (hittable == null || collider.CompareTag("Player"))
             {
                 continue;
             }

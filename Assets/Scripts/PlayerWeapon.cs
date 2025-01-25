@@ -19,6 +19,8 @@ public class PlayerWeapon : MonoBehaviour
     private GameObject electric;
     [SerializeField]
     private Explosion gunExplosion;
+    [SerializeField]
+    private float electricityDamageMultiplier = 0.5f;
 
     private float lastShoot;
     public float baseFirerate;
@@ -118,7 +120,7 @@ public class PlayerWeapon : MonoBehaviour
 
             if (target.TryGetComponent<Hittable>(out var hittable))
             {
-                hittable.Hit(GetDamage());
+                hittable.Hit(Mathf.CeilToInt(GetDamage() * electricityDamageMultiplier));
                 electrify.PlayRandom(.3f);
             }
             // Set the position exactly at the next point

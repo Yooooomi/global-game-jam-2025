@@ -6313,7 +6313,7 @@ MonoBehaviour:
   baseFirerate: 2
   bulletSpeed: 14
   bulletLifetime: 2
-  baseDamage: 10
+  baseDamage: 1
   spreadAngle: 15
   electrify: {fileID: 7300515905407578082}
   firing: {fileID: 8054699587230600084}
