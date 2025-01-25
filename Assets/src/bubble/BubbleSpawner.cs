@@ -91,8 +91,6 @@ public class BubbleSpawner : MonoBehaviour
         {
             bubble_spec_dic.Add(spec.kind, spec);
         }
-        SpawnBubbles();
-        lastSpawnTime = Time.time;
     }
 
     void Update()

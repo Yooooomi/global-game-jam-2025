@@ -64,7 +64,7 @@ MonoBehaviour:
       numberPerBatch: 20
     - kind: 1
       numberPerBatch: 10
-  spawnEvery: 5
+  spawnEvery: 2
   nextStepEvery: 30
-  minRadius: 15
-  maxRadius: 25
+  minRadius: 25
+  maxRadius: 35
