@@ -1,5 +1,5 @@
 public interface Pickupable
 {
-  public bool CanPickup();
+  public bool CanPickup(PlayerPicker from);
   public void Pickup(PlayerPicker picker);
 }
