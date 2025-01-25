@@ -125,10 +125,10 @@ public class PlayerWeapon : MonoBehaviour
             currentPosition = nextPosition;
             trailRenderer.transform.position = currentPosition + Vector3.forward * -5f;
 
-            // if (Random.Range(0f, 1f) > probability)
-            // {
-            //     break;
-            // }
+            if (Random.Range(0f, 1f) > probability)
+            {
+                break;
+            }
         }
     }
 
@@ -143,12 +143,12 @@ public class PlayerWeapon : MonoBehaviour
         {
             onKillEvent.Invoke(experience);
         }
-        if (upgrades.GetValueByKey("electrify") != -1f)
+        if (upgrades.GetValueByKey("electrify") != 0f)
         {
             StartCoroutine(LightningCoroutine(go.transform));
         }
-        float blastRadius = upgrades.GetValueByKey("bast_radius");
-        if (blastRadius != -1f)
+        float blastRadius = upgrades.GetValueByKey("explosion_radius");
+        if (blastRadius != 0f)
         {
             Explose(/*radius=*/blastRadius, /*damage=*/1, go.transform.position);
         }
