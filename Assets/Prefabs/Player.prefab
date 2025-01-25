@@ -6409,10 +6409,10 @@ MonoBehaviour:
   - key: damage
     name: Damage
     values:
-    - 15
-    - 30
-    - 50
-    - 80
+    - 1
+    - 2
+    - 4
+    - 8
     description: Your weapon does {{diffValue}} more damage
   - key: blower
     name: Blower

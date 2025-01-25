@@ -1,3 +1,4 @@
+using System.Xml.XPath;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -20,7 +21,7 @@ public class BubbleHittable : MonoBehaviour, Hittable
     public OnBubbleHealthChanged onHealthChanged = new();
     public OnBubbleDeath onBubbleDeath = new();
     public float hp;
-    public int experience;
+    public int experience = 0;
 
     private void Kill()
     {
@@ -35,6 +36,10 @@ public class BubbleHittable : MonoBehaviour, Hittable
     {
         hp = initialHp;
         onHealthChanged.Invoke(hp);
+    }
+
+    public void SetInitialXp(int xp) {
+        experience = xp;
     }
 
     public int Hit(float damage)

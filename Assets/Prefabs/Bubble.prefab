@@ -149,7 +149,7 @@ MonoBehaviour:
   toPlayOnDeath: {fileID: 6058752916270021569}
   dieDelaySec: 0.25
   hp: 5
-  experience: 10
+  experience: 15
 --- !u!114 &6058752916270021569
 MonoBehaviour:
   m_ObjectHideFlags: 0

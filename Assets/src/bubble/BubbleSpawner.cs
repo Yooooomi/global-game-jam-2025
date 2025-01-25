@@ -12,6 +12,7 @@ public class BubbleSpawner : MonoBehaviour
     private struct BubbleSpec
     {
         public int hp;
+        public int xp;
         public BubbleKind kind;
     }
     [System.Serializable]
@@ -68,7 +69,9 @@ public class BubbleSpawner : MonoBehaviour
         Vector2 spawnPos = (Vector2)transform.position + randomPos;
 
         GameObject newBubble = Instantiate(bubble, spawnPos, Quaternion.identity);
-        newBubble.GetComponent<BubbleHittable>().SetInitialHp(spec.hp);
+        BubbleHittable bubble_stats = newBubble.GetComponent<BubbleHittable>();
+        bubble_stats.SetInitialHp(spec.hp);
+        bubble_stats.SetInitialXp(spec.xp);
     }
 
     void SpawnBubbles()

@@ -47,12 +47,16 @@ MonoBehaviour:
   bubble: {fileID: 4446946438915858710, guid: 3cec39243f2959e4980674bbec7ca104, type: 3}
   bubble_specs:
   - hp: 1
+    xp: 15
     kind: 0
   - hp: 5
+    xp: 30
     kind: 1
   - hp: 20
+    xp: 60
     kind: 2
   - hp: 100
+    xp: 500
     kind: 3
   steps:
   - bubbles:
@@ -72,16 +76,16 @@ MonoBehaviour:
     - kind: 0
       numberPerBatch: 20
     - kind: 1
-      numberPerBatch: 20
+      numberPerBatch: 15
     - kind: 2
-      numberPerBatch: 10
+      numberPerBatch: 5
   - bubbles:
     - kind: 0
       numberPerBatch: 20
     - kind: 1
-      numberPerBatch: 20
+      numberPerBatch: 10
     - kind: 2
-      numberPerBatch: 20
+      numberPerBatch: 10
     - kind: 3
       numberPerBatch: 1
   spawnEvery: 2
