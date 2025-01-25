@@ -33,7 +33,7 @@ public class bubble : MonoBehaviour
         Vector2 toDest = (target.transform.position - transform.position).normalized;
 
         // Random vibe from -90 up to 90 degree toward target
-        float randomAngle = Random.Range(-90.0f, 90.0f);
+        float randomAngle = UnityEngine.Random.Range(-90.0f, 90.0f);
         Vector2 newVibe = Quaternion.Euler(0, 0, randomAngle) * toDest;
 
         lastVibeDirChangeTime = Time.time;
