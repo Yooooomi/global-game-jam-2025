@@ -6310,6 +6310,7 @@ MonoBehaviour:
   canon: {fileID: 5775158034167366412}
   electric: {fileID: 2118316003964125212, guid: 56aa4ae477564424eb39fd4f71784f4e, type: 3}
   gunExplosion: {fileID: 6911258390213610531}
+  electricityDamageMultiplier: 0.5
   baseFirerate: 2
   bulletSpeed: 14
   bulletLifetime: 2
@@ -6399,10 +6400,10 @@ MonoBehaviour:
   - key: explosion_radius
     name: Explosion radius
     values:
+    - 1
+    - 1.5
     - 2
-    - 3
-    - 4
-    - 5
+    - 2.5
     description: Your bullets explode, creating a {{value}}m blast
   - key: damage
     name: Damage
