@@ -1,10 +1,8 @@
 using UnityEngine;
 
-public class ExperienceOrb : MonoBehaviour, Pickupable
+public class ExperienceOrb : Pickupable
 {
   public int experience;
-  public float goingSpeed;
-  private PlayerPicker going;
 
   public void Init(int experience)
   {
@@ -12,27 +10,7 @@ public class ExperienceOrb : MonoBehaviour, Pickupable
     this.experience = experience;
   }
 
-  public bool CanPickup(PlayerPicker from)
-  {
-    return going == null || going == from.gameObject;
-  }
-
-  public void GoTo(PlayerPicker going)
-  {
-    this.going = going;
-  }
-
-  private void Update()
-  {
-    if (going == null)
-    {
-      return;
-    }
-    var direction = (going.transform.position - transform.position).normalized;
-    transform.position += goingSpeed * Time.deltaTime * direction;
-  }
-
-  public void Pickup(PlayerPicker picker)
+  protected override void Pickup(PlayerPicker picker)
   {
     if (!GameObject.Find("PlayerManager").TryGetComponent<PlayerExperience>(out var playerExperience))
     {
@@ -42,7 +20,5 @@ public class ExperienceOrb : MonoBehaviour, Pickupable
 
     // this is ugly
     GetComponent<RandomSound>().PlayRandom();
-
-    Destroy(gameObject);
   }
 }

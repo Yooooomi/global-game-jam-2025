@@ -1,5 +1,32 @@
-public interface Pickupable
+using UnityEngine;
+
+public abstract class Pickupable : MonoBehaviour
 {
-  public bool CanPickup(PlayerPicker from);
-  public void Pickup(PlayerPicker picker);
+  protected abstract void Pickup(PlayerPicker picker);
+
+  private PlayerPicker pickuper;
+  private float speed;
+  private float pickupAt;
+
+  public void StartPickup(PlayerPicker picker, float speed)
+  {
+    pickuper = picker;
+    pickupAt = Time.time + Vector3.Distance(transform.position, picker.transform.position) / speed;
+    this.speed = speed;
+  }
+
+  protected virtual void Update()
+  {
+    if (pickuper == null)
+    {
+      return;
+    }
+    var direction = pickuper.transform.position - transform.position;
+    transform.position += Time.deltaTime * speed * direction;
+    if (Time.time > pickupAt)
+    {
+      Pickup(pickuper);
+      Destroy(gameObject);
+    }
+  }
 }

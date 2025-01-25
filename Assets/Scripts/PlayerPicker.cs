@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerPicker : MonoBehaviour
 {
-  public float moveSpeed;
+  public float pickupSpeed;
   public float pickupRadius;
   public float pickupRange;
 
@@ -20,23 +20,12 @@ public class PlayerPicker : MonoBehaviour
     collider.radius = pickupRadius + (playerUpgrades.GetValueByKey("pickup_radius") / 100f * pickupRadius);
   }
 
-  public void OnTriggerStay2D(Collider2D collider)
+  public void OnTriggerEnter2D(Collider2D collider)
   {
     if (!collider.TryGetComponent<Pickupable>(out var pickupable))
     {
       return;
     }
-
-    if (!pickupable.CanPickup(this))
-    {
-      return;
-    }
-
-    var diff = (collider.transform.position - transform.position).normalized;
-    collider.transform.position -= moveSpeed * Time.deltaTime * diff;
-    if (Vector3.Distance(transform.position, collider.transform.position) < pickupRange)
-    {
-      pickupable.Pickup(this);
-    }
+    pickupable.StartPickup(this, pickupSpeed);
   }
 }

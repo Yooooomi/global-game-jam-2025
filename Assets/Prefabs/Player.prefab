@@ -5632,7 +5632,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3b7669bf7f8247aab00e8355e520ebe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  pickupSpeed: 10
   pickupRadius: 2.5
   pickupRange: 0.2
 --- !u!58 &1261504675973455656

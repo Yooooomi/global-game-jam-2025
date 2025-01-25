@@ -1,19 +1,13 @@
-using UnityEngine;
-
-public class MagnetPickupable : MonoBehaviour, Pickupable
+public class MagnetPickupable : Pickupable
 {
-  public bool CanPickup(PlayerPicker from)
-  {
-    return true;
-  }
+  public float orbSpeed;
 
-  public void Pickup(PlayerPicker picker)
+  protected override void Pickup(PlayerPicker picker)
   {
     var orbs = FindObjectsOfType<ExperienceOrb>();
     foreach (var orb in orbs)
     {
-      orb.GoTo(picker);
+      orb.StartPickup(picker, orbSpeed);
     }
-    Destroy(gameObject);
   }
 }
