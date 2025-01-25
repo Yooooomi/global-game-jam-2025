@@ -26,14 +26,15 @@ public class PlayerUpgrades : MonoBehaviour
 
   private float GetValueByKeyAndLevel(string key, int level)
   {
-    if (level == -1) {
+    if (level == -1)
+    {
       return 0f;
     }
     var upgrade = GetByKey(key);
     return upgrade.values[level];
   }
 
-  private int GetLevelByKey(string key)
+  public int GetLevelByKey(string key)
   {
     if (!upgraded.TryGetValue(key, out int level))
     {

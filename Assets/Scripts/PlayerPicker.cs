@@ -27,6 +27,11 @@ public class PlayerPicker : MonoBehaviour
       return;
     }
 
+    if (!pickupable.CanPickup())
+    {
+      return;
+    }
+
     var diff = (collider.transform.position - transform.position).normalized;
     collider.transform.position -= moveSpeed * Time.deltaTime * diff;
     if (Vector3.Distance(transform.position, collider.transform.position) < pickupRange)

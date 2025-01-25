@@ -61,6 +61,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   experience: 0
+  goingSpeed: 30
 --- !u!58 &5089066596354678789
 CircleCollider2D:
   m_ObjectHideFlags: 0
