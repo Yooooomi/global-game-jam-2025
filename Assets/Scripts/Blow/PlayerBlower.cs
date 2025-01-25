@@ -6,6 +6,8 @@ public class PlayerBlower : MonoBehaviour
     private PlayerControls controls;
     public float maxForce;
     public float forceDepletionPerMeter;
+    [SerializeField]
+    private ParticleSystem particleSystem;
 
     private void Start()
     {
@@ -17,8 +19,16 @@ public class PlayerBlower : MonoBehaviour
     {
         if (!controls.blow)
         {
+            particleSystem.Stop();
             return;
         }
+        if (!particleSystem.isPlaying)
+        {
+            particleSystem.Play();
+            var main = particleSystem.main;
+            main.startSpeed = 20f;
+        }
+
         foreach (var item in registry.GetInRange())
         {
             if (!item.TryGetComponent<Blowable>(out var blowable))
