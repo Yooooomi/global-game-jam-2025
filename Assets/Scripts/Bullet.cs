@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -11,6 +12,7 @@ public class Bullet : MonoBehaviour
     private Collider2D myCollider;
     private SpriteRenderer sprite;
     private ParticleSystem particleSystem;
+    private Action<int> onKill;
 
     private void Start()
     {
@@ -19,13 +21,14 @@ public class Bullet : MonoBehaviour
         particleSystem = GetComponentInChildren<ParticleSystem>();
     }
 
-    public void Init(Vector3 direction, float speed, float lifetime, float damage)
+    public void Init(Vector3 direction, float speed, float lifetime, float damage, Action<int> onKill)
     {
         birth = Time.time;
         this.direction = direction;
         this.speed = speed;
         this.lifetime = lifetime;
         this.damage = damage;
+        this.onKill = onKill;
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, angle);
@@ -47,7 +50,11 @@ public class Bullet : MonoBehaviour
         {
             return;
         }
-        hittable.Hit(damage);
+        var experience = hittable.Hit(damage);
+        if (experience > 0)
+        {
+            onKill(experience);
+        }
         Destroy(gameObject, 5f);
         sprite.enabled = false;
         myCollider.enabled = false;

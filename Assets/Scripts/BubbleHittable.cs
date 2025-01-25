@@ -16,20 +16,24 @@ public class BubbleHittable : MonoBehaviour, Hittable
 
     public UnityEvent<float> OnHealthChanged;
     public float hp;
+    public int experience;
 
-    private void Kill() {
+    private void Kill()
+    {
         selfCollider.enabled = false;
         body.constraints = RigidbodyConstraints2D.FreezeAll;
         toPlayOnDeath.PlayRandom();
         Destroy(gameObject, dieDelaySec);
     }
 
-    public void Hit(float damage)
+    public int Hit(float damage)
     {
         hp -= damage;
+        OnHealthChanged.Invoke(hp);
         if (hp <= 0) {
             Kill();
+            return experience;
         }
-        OnHealthChanged.Invoke(hp);
+        return -1;
     }
 }

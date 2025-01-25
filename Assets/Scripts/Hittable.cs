@@ -1,4 +1,5 @@
 public interface Hittable
 {
-    public void Hit(float damages);
+    // Returns experience gained if killed, -1 otherwise
+    public int Hit(float damages);
 }
