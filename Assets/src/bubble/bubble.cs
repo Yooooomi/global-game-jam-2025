@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class bubble : MonoBehaviour
@@ -61,10 +62,11 @@ public class bubble : MonoBehaviour
                 continue;
             }
             Vector2 distanceVec = player.transform.position - transform.position;
-            float distance = distanceVec.x + distanceVec.y;
+            float distance = Math.Abs(distanceVec.x) + Math.Abs(distanceVec.y);
             if (distance < distanceToClosestPlayer)
             {
                 closestPlayer = player;
+                distanceToClosestPlayer = distance;
             }
         }
         target = closestPlayer;

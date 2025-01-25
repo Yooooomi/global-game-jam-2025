@@ -6361,9 +6361,9 @@ MonoBehaviour:
     name: Firerate
     values:
     - 0.5
-    - 1
     - 1.5
     - 2
+    - 3
     description: Go boom boom boom faster, shoot {{diffValue}} more bullets per second
   - key: max_health
     name: Max health
