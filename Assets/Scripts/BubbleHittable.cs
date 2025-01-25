@@ -1,9 +1,9 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class BubbleHittable : MonoBehaviour, Hittable
 {
-    [SerializeField]
-    private Animator animator;
+
     [SerializeField]
     private Rigidbody2D body;
     [SerializeField]
@@ -12,26 +12,24 @@ public class BubbleHittable : MonoBehaviour, Hittable
     private RandomSound toPlayOnDeath;
 
     [SerializeField]
-    private float dieAnimationTime;
+    private float dieDelaySec;
 
-    private float killAtTime = 0f;
+    public UnityEvent<float> OnHealthChanged;
+    public float hp;
 
     private void Kill() {
         selfCollider.enabled = false;
         body.constraints = RigidbodyConstraints2D.FreezeAll;
-        killAtTime = Time.time + dieAnimationTime;
-        animator.SetBool("Dead", true);
         toPlayOnDeath.PlayRandom();
+        Destroy(gameObject, dieDelaySec);
     }
 
     public void Hit(float damage)
     {
-        Kill();
-    }
-
-    public void Update() {
-        if (killAtTime != 0 && Time.time > killAtTime) {
-            Destroy(gameObject);
+        hp -= damage;
+        if (hp <= 0) {
+            Kill();
         }
+        OnHealthChanged.Invoke(hp);
     }
 }

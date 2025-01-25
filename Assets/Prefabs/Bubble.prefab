@@ -142,11 +142,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a2a58ca606ed495f88aff1efefb8ccc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 1674357668024386248}
   body: {fileID: 8311216739964587885}
   selfCollider: {fileID: 3160249624191455374}
   toPlayOnDeath: {fileID: 6058752916270021569}
-  dieAnimationTime: 0.25
+  dieDelaySec: 0.25
+  OnHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  hp: 5
 --- !u!114 &6058752916270021569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,6 +180,7 @@ GameObject:
   - component: {fileID: 5018461304946056956}
   - component: {fileID: 1169807146985625980}
   - component: {fileID: 1674357668024386248}
+  - component: {fileID: 7119747242166960201}
   m_Layer: 0
   m_Name: Render
   m_TagString: Untagged
@@ -219,7 +223,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: f90d6db6c09bc4d4db86662549ee37b5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -272,3 +276,27 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7119747242166960201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5809945964474885361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcd6a9d42b7d42a4abeef1125340c7f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colorsByHp:
+  - primary: {r: 0.007843138, g: 0.46274513, b: 0.7960785, a: 1}
+    light: {r: 0.007843138, g: 0.5803922, b: 0.9960785, a: 1}
+    dark: {r: 0.039215688, g: 0.17254902, b: 0.40392157, a: 0}
+    hp_required: 0
+  - primary: {r: 0.5686275, g: 0.007843138, b: 0.9960785, a: 1}
+    light: {r: 0.7372549, g: 0.33333334, b: 0.9921569, a: 1}
+    dark: {r: 0.29411766, g: 0.039215688, b: 0.40392157, a: 1}
+    hp_required: 2
+  bubble: {fileID: 8118043340874974568}
+  sprite: {fileID: 1169807146985625980}
+  animator: {fileID: 1674357668024386248}
