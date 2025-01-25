@@ -7,7 +7,8 @@ public class OnLevelGainedEvent : UnityEvent { }
 
 public class PlayerExperience : MonoBehaviour
 {
-  public List<int> levels = new();
+  public int additionalXpPerLevel;
+  public int currentLevel = 0;
   private int currentExperience = 0;
   public OnLevelGainedEvent onLevelGainedEvent = new();
 
@@ -17,32 +18,31 @@ public class PlayerExperience : MonoBehaviour
     weapon.onKillEvent.AddListener(OnKill);
   }
 
-  private void Start()
+  private bool CheckLevelPassed()
   {
+    var xpNeededForNextLevel = (currentLevel + 1) * additionalXpPerLevel;
+    if (currentExperience >= xpNeededForNextLevel)
+    {
+      currentLevel += 1;
+      currentExperience -= xpNeededForNextLevel;
+      return true;
+    }
+    return false;
   }
 
   public void OnKill(int experience)
   {
-    var level = GetLevel();
     currentExperience += experience;
-    var nowLevel = GetLevel();
-    if (level != nowLevel)
+    var passedLevel = CheckLevelPassed();
+    if (passedLevel)
     {
       onLevelGainedEvent.Invoke();
     }
   }
 
-  public int GetLevel()
+  public float GetCurrentLevelAdvancement()
   {
-    int add = 0;
-    for (int i = 0; i < levels.Count; i += 1)
-    {
-      add += levels[i];
-      if (currentExperience < add)
-      {
-        return i;
-      }
-    }
-    return levels.Count;
+    var xpNeededForNextLevel = (currentLevel + 1) * additionalXpPerLevel;
+    return (float)currentExperience / xpNeededForNextLevel;
   }
 }
