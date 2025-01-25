@@ -14,5 +14,6 @@ public class MagnetPickupable : MonoBehaviour, Pickupable
     {
       orb.GoTo(picker.gameObject);
     }
+    Destroy(gameObject);
   }
 }
