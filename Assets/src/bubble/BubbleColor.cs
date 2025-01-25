@@ -42,7 +42,7 @@ public class BubbleColor : MonoBehaviour
         }
     }
 
-    void Start()
+    void Awake()
     {
         bubble.OnHealthChanged.AddListener(OnHealthChanged);
         // Sort color in descending color based on hp_required

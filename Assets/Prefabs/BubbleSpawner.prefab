@@ -45,7 +45,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bubble: {fileID: 4446946438915858710, guid: 3cec39243f2959e4980674bbec7ca104, type: 3}
-  spawnEverySec: 5
-  bubbleToSpawnPerBatch: 20
+  bubble_specs:
+  - hp: 1
+    kind: 0
+  - hp: 3
+    kind: 1
+  steps:
+  - bubbles:
+    - kind: 0
+      numberPerBatch: 10
+  - bubbles:
+    - kind: 0
+      numberPerBatch: 15
+    - kind: 1
+      numberPerBatch: 5
+  - bubbles:
+    - kind: 0
+      numberPerBatch: 20
+    - kind: 1
+      numberPerBatch: 10
+  spawnEvery: 5
+  nextStepEvery: 30
   minRadius: 15
   maxRadius: 25

@@ -26,6 +26,11 @@ public class BubbleHittable : MonoBehaviour, Hittable
         Destroy(gameObject, dieDelaySec);
     }
 
+    public void SetInitialHp(float initialHp) {
+        hp = initialHp;
+        OnHealthChanged.Invoke(hp);
+    }
+
     public int Hit(float damage)
     {
         hp -= damage;
