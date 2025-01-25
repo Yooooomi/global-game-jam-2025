@@ -3,37 +3,65 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerUpgradeProposal : MonoBehaviour
 {
   private PlayerUpgrades upgrades;
   [SerializeField]
   private List<PlayerUpgradeCard> cards = new();
+  [SerializeField]
+  private Image playerImage;
   private PlayerInput playerInput;
   private List<string> proposedKeys;
   private Action OnUpgraded;
 
-  public void Init(PlayerUpgrades upgrades, Action onUpgraded)
+  public bool Init(PlayerUpgrades upgrades, Action onUpgraded)
   {
     OnUpgraded = onUpgraded;
     this.upgrades = upgrades;
     var proposed = upgrades.GetNextUpgrades();
+
+    if (proposed.Count == 0)
+    {
+      return false;
+    }
+
     proposedKeys = proposed.Select(e => e.key).ToList();
-    for (int i = 0; i < proposed.Count; i += 1)
+
+    int i = 0;
+    for (i = 0; i < proposed.Count; i += 1)
     {
       var thisProposed = proposed[i];
+      cards[i].gameObject.SetActive(true);
       cards[i].Init(thisProposed.name, upgrades.GetDescriptionByKey(thisProposed.key));
     }
+    for (; i < 3; i += 1)
+    {
+      cards[i].gameObject.SetActive(false);
+    }
+
     var input = upgrades.gameObject.GetComponent<PlayerInput>();
     playerInput = input;
     SetupKeys();
+    playerImage.sprite = upgrades.GetComponentInChildren<PlayerSkin>().GetPresentation();
+    return true;
   }
 
   private void SetupKeys()
   {
-    playerInput.actions.FindAction("UpgradeFirst", true).performed += OnFirst;
-    playerInput.actions.FindAction("UpgradeSecond", true).performed += OnSecond;
-    playerInput.actions.FindAction("UpgradeThird", true).performed += OnThird;
+    if (proposedKeys.Count > 0)
+    {
+      playerInput.actions.FindAction("UpgradeFirst", true).performed += OnFirst;
+    }
+    if (proposedKeys.Count > 1)
+    {
+      playerInput.actions.FindAction("UpgradeSecond", true).performed += OnSecond;
+    }
+    if (proposedKeys.Count > 2)
+    {
+      playerInput.actions.FindAction("UpgradeThird", true).performed += OnThird;
+    }
   }
 
   private void UnsetupKeys()

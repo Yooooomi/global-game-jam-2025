@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [Serializable]
@@ -65,22 +66,16 @@ public class PlayerUpgrades : MonoBehaviour
   public List<PlayerUpgrade> GetNextUpgrades()
   {
 
-    System.Random random = new System.Random();
-    HashSet<int> selectedIndices = new HashSet<int>();
+    var random = new System.Random();
+    var selectedIndices = new HashSet<int>();
 
-    while (selectedIndices.Count < 3)
-    {
-      int randomIndex = random.Next(availableUpgrades.Count);
-      selectedIndices.Add(randomIndex);
-    }
+    var playerAvailableUpgrades = availableUpgrades
+      .Where(e => !upgraded.ContainsKey(e.key) || upgraded[e.key] < availableUpgrades.Find(upgrade => upgrade.key == e.key).values.Length - 1)
+      .OrderBy(_ => Guid.NewGuid())
+      .Take(3)
+      .ToList();
 
-    List<PlayerUpgrade> randomElements = new();
-    foreach (int index in selectedIndices)
-    {
-      randomElements.Add(availableUpgrades[index]);
-    }
-
-    return randomElements;
+    return playerAvailableUpgrades;
   }
 
   public void UpgradeByKey(string key)
