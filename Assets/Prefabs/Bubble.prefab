@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5252336613534436755}
   - component: {fileID: 8118043340874974568}
   - component: {fileID: 6058752916270021569}
+  - component: {fileID: 2492794800192173163}
   m_Layer: 0
   m_Name: Bubble
   m_TagString: Untagged
@@ -150,6 +151,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   hp: 5
+  experience: 1
 --- !u!114 &6058752916270021569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,6 +171,21 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 2d71b672e3b9e104189fdf54d1a44d75, type: 3}
   - {fileID: 8300000, guid: ba83d678f7db8c4429f49ba019b07c2a, type: 3}
   - {fileID: 8300000, guid: 2d38335c1bb615b4a8bf69f1111b172a, type: 3}
+--- !u!114 &2492794800192173163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4446946438915858710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cfaafeff901e45dd880264c7cd86f5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackSpeed: 1
+  damage: 20
+  range: 1.5
 --- !u!1 &5809945964474885361
 GameObject:
   m_ObjectHideFlags: 0

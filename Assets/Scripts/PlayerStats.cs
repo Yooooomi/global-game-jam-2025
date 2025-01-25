@@ -1,4 +1,8 @@
 using UnityEngine;
+using UnityEngine.Events;
+
+public class OnDeathEvent : UnityEvent { }
+public class OnRespawnEvent : UnityEvent { }
 
 public class PlayerStats : MonoBehaviour, Hittable
 {
@@ -12,6 +16,9 @@ public class PlayerStats : MonoBehaviour, Hittable
   public float cooldownUntilAlive { get; private set; }
   public float respawnTime;
   private float lastHit;
+
+  public OnDeathEvent onDeathEvent = new();
+  public OnRespawnEvent onRespawnEvent = new();
 
   public float GetMaxHealth()
   {
@@ -57,6 +64,7 @@ public class PlayerStats : MonoBehaviour, Hittable
     {
       alive = true;
       health = GetMaxHealth() / 2f;
+      onRespawnEvent.Invoke();
     }
   }
 
@@ -79,6 +87,7 @@ public class PlayerStats : MonoBehaviour, Hittable
       alive = false;
       health = 0;
       cooldownUntilAlive = respawnTime;
+      onDeathEvent.Invoke();
     }
     return -1;
   }

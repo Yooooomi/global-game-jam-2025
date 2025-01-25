@@ -14,20 +14,21 @@ public class PlayerUpgradeWholeProposal : MonoBehaviour
 
   public void Init(List<PlayerUpgrades> upgrades)
   {
-
     bool atLeastOnePlayerHasToUpgrade = false;
 
     int i = 0;
     for (i = 0; i < upgrades.Count; i += 1)
     {
-      var upgrade = upgrades[i];
-      var needsToUpgrade = proposals[i].Init(upgrade, () =>
+      int currentIndex = i;
+      var upgrade = upgrades[currentIndex];
+      var needsToUpgrade = proposals[currentIndex].Init(upgrade, () =>
       {
-        upgraded.Add(i);
+        upgraded.Add(currentIndex);
         if (upgraded.Count == upgrades.Count)
         {
           Time.timeScale = 1f;
-          Destroy(gameObject);
+          gameObject.SetActive(false);
+          upgraded.Clear();
         }
       });
       if (needsToUpgrade)

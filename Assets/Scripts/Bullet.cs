@@ -50,6 +50,10 @@ public class Bullet : MonoBehaviour
         {
             return;
         }
+        if (collider.gameObject.CompareTag("Player"))
+        {
+            return;
+        }
         var experience = hittable.Hit(damage);
         if (experience > 0)
         {

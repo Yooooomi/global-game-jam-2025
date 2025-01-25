@@ -3,12 +3,26 @@ using UnityEngine;
 public class PlayerMovementAnimation : MonoBehaviour
 {
   private PlayerControls controls;
+  private PlayerStats stats;
   private Animator animator;
 
   private void Start()
   {
     controls = GetComponentInParent<PlayerControls>();
     animator = GetComponent<Animator>();
+    stats = GetComponentInParent<PlayerStats>();
+    stats.onDeathEvent.AddListener(OnDeath);
+    stats.onRespawnEvent.AddListener(OnRespawn);
+  }
+
+  private void OnDeath()
+  {
+    animator.SetBool("dead", true);
+  }
+
+  private void OnRespawn()
+  {
+    animator.SetBool("dead", false);
   }
 
   private void Update()

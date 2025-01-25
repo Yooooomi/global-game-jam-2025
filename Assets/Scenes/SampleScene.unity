@@ -534,6 +534,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerUpgradeWholeProposal
       objectReference: {fileID: 0}
+    - target: {fileID: 5739640237477195016, guid: e09c64e1a0aec404ebc5beb58a25a96f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -610,6 +614,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 6541797345458630516, guid: 32f90302766eb41e0a124f83b8b1d39e, type: 3}
+      propertyPath: m_Radius
+      value: 0.47
+      objectReference: {fileID: 0}
     - target: {fileID: 6832962386625518973, guid: 32f90302766eb41e0a124f83b8b1d39e, type: 3}
       propertyPath: m_Name
       value: Player

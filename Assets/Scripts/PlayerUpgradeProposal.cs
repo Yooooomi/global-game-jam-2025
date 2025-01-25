@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -8,6 +9,10 @@ using UnityEngine.UI;
 public class PlayerUpgradeProposal : MonoBehaviour
 {
   private PlayerUpgrades upgrades;
+  [SerializeField]
+  private GameObject selecting;
+  [SerializeField]
+  private GameObject selected;
   [SerializeField]
   private List<PlayerUpgradeCard> cards = new();
   [SerializeField]
@@ -26,6 +31,9 @@ public class PlayerUpgradeProposal : MonoBehaviour
     {
       return false;
     }
+
+    selected.SetActive(false);
+    selecting.SetActive(true);
 
     proposedKeys = proposed.Select(e => e.key).ToList();
 
@@ -74,6 +82,8 @@ public class PlayerUpgradeProposal : MonoBehaviour
   private void End()
   {
     UnsetupKeys();
+    selected.SetActive(true);
+    selecting.SetActive(false);
     OnUpgraded();
   }
 

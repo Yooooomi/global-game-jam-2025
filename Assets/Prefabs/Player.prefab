@@ -26,12 +26,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 279074971930843633}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 516788989360999964}
+  m_Father: {fileID: 8280510930760013567}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!60 &8243610255121058869
 PolygonCollider2D:
@@ -227,6 +227,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 4749868798126455164}
   - {fileID: 8523750570495284120}
   m_Father: {fileID: 516788989360999964}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -293,7 +294,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -5973,7 +5974,7 @@ GameObject:
   - component: {fileID: 7281831662386567595}
   - component: {fileID: 1539737967076536185}
   - component: {fileID: 1532648329085580480}
-  - component: {fileID: 3298620080595677276}
+  - component: {fileID: 6541797345458630516}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -5996,7 +5997,6 @@ Transform:
   m_Children:
   - {fileID: 1725613499042601450}
   - {fileID: 8280510930760013567}
-  - {fileID: 4749868798126455164}
   - {fileID: 8070518258220209441}
   - {fileID: 2096802548652816252}
   m_Father: {fileID: 0}
@@ -6175,8 +6175,8 @@ MonoBehaviour:
     - 50
     - 80
     description: Grow some muscles and get tankier, gain {{diffValue}} max health
---- !u!61 &3298620080595677276
-BoxCollider2D:
+--- !u!58 &6541797345458630516
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -6208,18 +6208,8 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_Radius: 0.5
 --- !u!1 &7475456069639035772
 GameObject:
   m_ObjectHideFlags: 0
