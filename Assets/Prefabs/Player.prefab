@@ -6401,10 +6401,10 @@ MonoBehaviour:
   - key: explosion_radius
     name: Explosion radius
     values:
-    - 1
     - 1.5
     - 2
     - 2.5
+    - 4
     description: Your bullets explode, creating a {{value}}m blast
   - key: damage
     name: Damage
