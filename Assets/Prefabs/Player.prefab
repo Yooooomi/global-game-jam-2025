@@ -6071,6 +6071,7 @@ GameObject:
   - component: {fileID: 1539737967076536185}
   - component: {fileID: 1532648329085580480}
   - component: {fileID: 6541797345458630516}
+  - component: {fileID: 6911258390213610531}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -6214,6 +6215,7 @@ MonoBehaviour:
   bullet: {fileID: 9045171342814083422, guid: ce67224c087e442948f2668cee8b0a85, type: 3}
   canon: {fileID: 5775158034167366412}
   electric: {fileID: 2118316003964125212, guid: 56aa4ae477564424eb39fd4f71784f4e, type: 3}
+  gunExplosion: {fileID: 6911258390213610531}
   baseFirerate: 2
   bulletSpeed: 14
   bulletLifetime: 2
@@ -6365,6 +6367,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.47
+--- !u!114 &6911258390213610531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6832962386625518973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 015bd1b61a4d1a2468d638305223a3b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosionPrefab: {fileID: 7921145086628924352, guid: fec5e5f936a97f94f86ce660c4047842, type: 3}
 --- !u!1 &7475456069639035772
 GameObject:
   m_ObjectHideFlags: 0

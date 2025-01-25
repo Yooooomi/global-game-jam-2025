@@ -17,6 +17,8 @@ public class PlayerWeapon : MonoBehaviour
     private Transform canon;
     [SerializeField]
     private GameObject electric;
+    [SerializeField]
+    private Explosion gunExplosion;
 
     private float lastShoot;
     public float baseFirerate;
@@ -128,17 +130,25 @@ public class PlayerWeapon : MonoBehaviour
         StartCoroutine(LightningCoroutine(targets));
     }
 
+    private void Explose(float radius, float damage, Vector2 position)
+    {
+        gunExplosion.Explode(radius, damage, position);
+    }
+
     private void OnHit(int experience, GameObject go)
     {
         if (experience > 0)
         {
             onKillEvent.Invoke(experience);
         }
-        // if (upgrades.GetValueByKey("aoe") == -1f)
-        // {
-        //     return;
-        // }
-        Electrize(go.transform, new HashSet<int>());
+        if (upgrades.GetValueByKey("aoe") != -1f)
+        {
+            Electrize(go.transform, new HashSet<int>());
+        }
+        float blastRadius = upgrades.GetValueByKey("bast_radius");
+        if (blastRadius != -1f) {
+            Explose(/*radius=*/blastRadius, /*damage=*/1, go.transform.position);
+        }
     }
 
     private void Update()
