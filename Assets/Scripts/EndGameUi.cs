@@ -10,12 +10,6 @@ public class EndGameUi : MonoBehaviour
   [SerializeField]
   private List<EndGamePlayerUi> uis;
   public OnNewGameEvent onNewGameEvent = new();
-  private PlayersEvents playersEvents;
-
-  private void Start()
-  {
-    playersEvents = GameObject.Find("PlayerManager").GetComponent<PlayersEvents>();
-  }
 
   public void Init(List<PlayerStats> stats)
   {
@@ -30,7 +24,7 @@ public class EndGameUi : MonoBehaviour
       uis[i].gameObject.SetActive(false);
     }
 
-    foreach (var player in playersEvents.players)
+    foreach (var player in GameObject.Find("PlayerManager").GetComponent<PlayersEvents>().players)
     {
       player.actions.FindAction("UpgradeSecond", true).performed += OnNewGame;
     }
@@ -38,7 +32,7 @@ public class EndGameUi : MonoBehaviour
 
   public void OnNewGame(InputAction.CallbackContext context)
   {
-    foreach (var player in playersEvents.players)
+    foreach (var player in GameObject.Find("PlayerManager").GetComponent<PlayersEvents>().players)
     {
       player.actions.FindAction("UpgradeSecond", true).performed -= OnNewGame;
     }

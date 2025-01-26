@@ -516,22 +516,6 @@ PrefabInstance:
       propertyPath: players
       value: 
       objectReference: {fileID: 1637899283}
-    - target: {fileID: -509625881902169740, guid: 05936fcd422153848b296d84b41f2de1, type: 3}
-      propertyPath: bubble_specs.Array.data[3].xp
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: -509625881902169740, guid: 05936fcd422153848b296d84b41f2de1, type: 3}
-      propertyPath: bubble_specs.Array.data[4].xp
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: -509625881902169740, guid: 05936fcd422153848b296d84b41f2de1, type: 3}
-      propertyPath: bubble_specs.Array.data[5].xp
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: -509625881902169740, guid: 05936fcd422153848b296d84b41f2de1, type: 3}
-      propertyPath: bubble_specs.Array.data[10].xp
-      value: 500
-      objectReference: {fileID: 0}
     - target: {fileID: 1698214903835655689, guid: 05936fcd422153848b296d84b41f2de1, type: 3}
       propertyPath: m_Name
       value: BubbleSpawner
