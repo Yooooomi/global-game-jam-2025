@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3727610639999705443}
   - component: {fileID: 7448596374568559569}
   - component: {fileID: 6857695247492539073}
+  - component: {fileID: 4273658682444915963}
   m_Layer: 0
   m_Name: PlayerManager
   m_TagString: Untagged
@@ -119,6 +120,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   additionalXpPerLevel: 300
   currentLevel: 0
+--- !u!114 &4273658682444915963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1440923529126682265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63b17890637d741288d4fd17ad4ad2d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minX: -23.2
+  maxX: 23.2
+  minY: -13
+  maxY: 13
 --- !u!1 &7401348909687758322
 GameObject:
   m_ObjectHideFlags: 0

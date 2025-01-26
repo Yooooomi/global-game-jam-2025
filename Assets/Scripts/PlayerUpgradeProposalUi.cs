@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -35,6 +36,10 @@ public class PlayerUpgradeProposalUi : MonoBehaviour
 
   private void OnLevelGained()
   {
+    if (!upgrades.Any(e => e.CanUpgrade()))
+    {
+      return;
+    }
     playerUpgradeProposal.gameObject.SetActive(true);
     playerUpgradeProposal.Init(upgrades);
   }

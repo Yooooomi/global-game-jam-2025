@@ -38,19 +38,25 @@ public class BubbleHittable : MonoBehaviour, Hittable
         onHealthChanged.Invoke(hp);
     }
 
-    public void SetInitialXp(int xp) {
+    public void SetInitialXp(int xp)
+    {
         experience = xp;
     }
 
-    public int Hit(float damage)
+    public bool CanHit()
+    {
+        return MapConfiguration.instance.InMap(transform.position);
+    }
+
+    public float Hit(float damage)
     {
         hp -= damage;
         onHealthChanged.Invoke(hp);
         if (hp <= 0)
         {
             Kill();
-            return experience;
+            return damage + hp;
         }
-        return -1;
+        return damage;
     }
 }

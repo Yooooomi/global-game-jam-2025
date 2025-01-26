@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Explosion : MonoBehaviour
@@ -7,8 +5,9 @@ public class Explosion : MonoBehaviour
     [SerializeField]
     private GameObject explosionPrefab;
 
-    public void Explode(float radius, float damage, Vector2 position, bool damagePlayer = false)
+    public float Explode(float radius, float damage, Vector2 position, bool damagePlayer = false)
     {
+        var damages = 0f;
         Collider2D[] hits = Physics2D.OverlapCircleAll(position, radius);
         foreach (Collider2D collider in hits)
         {
@@ -17,9 +16,10 @@ public class Explosion : MonoBehaviour
             {
                 continue;
             }
-            hittable.Hit(damage);
+            damages += hittable.Hit(damage);
         }
-       GameObject explosion = Instantiate(explosionPrefab,  position, Quaternion.identity);
-       explosion.transform.localScale *= radius * 2;
+        GameObject explosion = Instantiate(explosionPrefab, position, Quaternion.identity);
+        explosion.transform.localScale *= radius * 2;
+        return damages;
     }
 }

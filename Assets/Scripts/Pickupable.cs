@@ -7,6 +7,7 @@ public abstract class Pickupable : MonoBehaviour
   private PlayerPicker pickuper;
   private float speed;
   private float pickupAt;
+  protected bool pickingUp;
 
   public void StartPickup(PlayerPicker picker, float speed)
   {
@@ -14,6 +15,8 @@ public abstract class Pickupable : MonoBehaviour
     pickupAt = Time.time + Vector3.Distance(transform.position, picker.transform.position) / speed;
     this.speed = speed;
   }
+
+  protected virtual void OnStartPickup() { }
 
   protected virtual void Update()
   {

@@ -6,6 +6,7 @@ public class OnRespawnEvent : UnityEvent { }
 
 public class PlayerStats : MonoBehaviour, Hittable
 {
+  private PlayerGameStats playerGameStats;
   private PlayerUpgrades upgrades;
 
   public float health { get; private set; }
@@ -29,6 +30,7 @@ public class PlayerStats : MonoBehaviour, Hittable
   {
     alive = true;
     health = baseMaxHealth;
+    playerGameStats = GetComponent<PlayerGameStats>();
     upgrades = GetComponent<PlayerUpgrades>();
   }
 
@@ -79,7 +81,7 @@ public class PlayerStats : MonoBehaviour, Hittable
     HandleRespawn();
   }
 
-  public int Hit(float damage)
+  public float Hit(float damage)
   {
     if (!alive)
     {
@@ -90,10 +92,13 @@ public class PlayerStats : MonoBehaviour, Hittable
     if (health < 0)
     {
       alive = false;
-      health = 0;
       cooldownUntilAlive = respawnTime;
       onDeathEvent.Invoke();
+      playerGameStats.TakeDamages(damage + health);
+      health = 0;
+      return damage;
     }
-    return -1;
+    playerGameStats.TakeDamages(damage);
+    return damage;
   }
 }

@@ -4,10 +4,11 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class OnKillEvent : UnityEvent<int> { }
+public class OnDamageEvent : UnityEvent<WeaponType, float> { }
 
 public class PlayerWeapon : MonoBehaviour
 {
+    private PlayerGameStats playerGameStats;
     private PlayerUpgrades upgrades;
     private PlayerStats stats;
     private PlayerControls controls;
@@ -29,8 +30,6 @@ public class PlayerWeapon : MonoBehaviour
     public float baseDamage;
     public float spreadAngle;
 
-    public OnKillEvent onKillEvent = new();
-
     [SerializeField]
     private RandomSound electrify;
     [SerializeField]
@@ -38,6 +37,7 @@ public class PlayerWeapon : MonoBehaviour
 
     private void Start()
     {
+        playerGameStats = GetComponent<PlayerGameStats>();
         upgrades = GetComponent<PlayerUpgrades>();
         stats = GetComponent<PlayerStats>();
         controls = GetComponent<PlayerControls>();
@@ -125,7 +125,7 @@ public class PlayerWeapon : MonoBehaviour
 
             if (target.TryGetComponent<Hittable>(out var hittable))
             {
-                hittable.Hit(Mathf.CeilToInt(GetDamage() * electricityDamageMultiplier));
+                playerGameStats.RegisterDamages(WeaponType.electrify, hittable.Hit(Mathf.CeilToInt(GetDamage() * electricityDamageMultiplier)));
                 electrify.PlayRandom(.5f);
             }
             // Set the position exactly at the next point
@@ -141,15 +141,11 @@ public class PlayerWeapon : MonoBehaviour
 
     private void Explose(float radius, float damage, Vector2 position)
     {
-        gunExplosion.Explode(radius, damage, position);
+        playerGameStats.RegisterDamages(WeaponType.explosion, gunExplosion.Explode(radius, damage, position));
     }
 
-    private void OnHit(int experience, GameObject go)
+    private void OnHit(GameObject go)
     {
-        if (experience > 0)
-        {
-            onKillEvent.Invoke(experience);
-        }
         if (upgrades.GetValueByKey("electrify") != 0f)
         {
             StartCoroutine(LightningCoroutine(go.transform));
@@ -157,7 +153,7 @@ public class PlayerWeapon : MonoBehaviour
         float blastRadius = upgrades.GetValueByKey("explosion_radius");
         if (blastRadius != 0f)
         {
-            Explose(/*radius=*/blastRadius, /*damage=*/1, go.transform.position);
+            Explose(blastRadius, 1f, go.transform.position);
         }
     }
 
@@ -197,7 +193,7 @@ public class PlayerWeapon : MonoBehaviour
                 Destroy(b);
                 return;
             }
-            bull.Init(direction, bulletSpeed, bulletLifetime, GetDamage(), OnHit);
+            bull.Init(direction, bulletSpeed, bulletLifetime, GetDamage(), OnHit, playerGameStats);
         }
     }
 }

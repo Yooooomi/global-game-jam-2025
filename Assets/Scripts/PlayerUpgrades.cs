@@ -29,6 +29,18 @@ public class PlayerUpgrades : MonoBehaviour
     return upgrade;
   }
 
+  public bool CanUpgrade()
+  {
+    foreach (var availableUpgrade in availableUpgrades)
+    {
+      if (GetLevelByKey(availableUpgrade.key) + 1 != availableUpgrade.values.Length)
+      {
+        return true;
+      }
+    }
+    return false;
+  }
+
   private float GetValueByKeyAndLevel(string key, int level)
   {
     if (level == -1)

@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class BoomerangMovement : MonoBehaviour
+public class BoomerangMovement : Pickupable
 {
   public float time;
   public float speed;
@@ -14,18 +14,21 @@ public class BoomerangMovement : MonoBehaviour
   private float weaponDamageMultiplier;
   private bool onReturn;
   private RandomSound sound;
+  private Coroutine currentMovement;
+  private PlayerGameStats playerGameStats;
 
   private void Start()
   {
     sound = GetComponent<RandomSound>();
-    StartCoroutine(PerformMovement());
+    currentMovement = StartCoroutine(PerformMovement());
   }
 
-  public void Init(float weaponDamageMultiplier, PlayerWeapon playerWeapon, Action<GameObject> onHitPlayer)
+  public void Init(float weaponDamageMultiplier, PlayerWeapon playerWeapon, PlayerGameStats playerGameStats, Action<GameObject> onHitPlayer)
   {
     this.playerWeapon = playerWeapon;
     this.onHitPlayer = onHitPlayer;
     this.weaponDamageMultiplier = weaponDamageMultiplier;
+    this.playerGameStats = playerGameStats;
   }
 
   private IEnumerator PerformMovement()
@@ -61,23 +64,38 @@ public class BoomerangMovement : MonoBehaviour
     Destroy(gameObject);
   }
 
+  protected override void Pickup(PlayerPicker picker)
+  {
+    onHitPlayer(picker.gameObject);
+    Destroy(gameObject);
+  }
+
+  protected override void OnStartPickup()
+  {
+    base.OnStartPickup();
+    if (currentMovement == null)
+    {
+      return;
+    }
+    StopCoroutine(currentMovement);
+    currentMovement = null;
+  }
+
   private void OnTriggerEnter2D(Collider2D collider)
   {
+    if (!onReturn)
+    {
+      return;
+    }
     if (collider.gameObject.CompareTag("Player"))
     {
-      if (!onReturn)
-      {
-        return;
-      }
-      onHitPlayer(collider.gameObject);
-      Destroy(gameObject);
       return;
     }
     if (!collider.TryGetComponent<Hittable>(out var hittable))
     {
       return;
     }
-    hittable.Hit(Mathf.Ceil(playerWeapon.GetDamage() * weaponDamageMultiplier));
+    playerGameStats.RegisterDamages(WeaponType.boomerang, hittable.Hit(Mathf.Ceil(playerWeapon.GetDamage() * weaponDamageMultiplier)));
     sound.PlayRandom(.5f);
   }
 }

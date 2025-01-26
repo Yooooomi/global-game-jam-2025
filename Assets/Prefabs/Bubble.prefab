@@ -200,7 +200,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   experienceOrbPrefab: {fileID: 7624542758127195231, guid: a39e24b8f17a74682bf2d9e534b8fbd7, type: 3}
   drops:
-  - rate: 0.0025
+  - rate: 0.00125
     prefab: {fileID: 6895197857211011965, guid: b758fb8eb60db4a698e51d025cf28386, type: 3}
 --- !u!114 &3072366813900417694
 MonoBehaviour:

@@ -9,18 +9,20 @@ public class BoomerangWeapon : MonoBehaviour
   [SerializeField]
   private GameObject boomerangPrefab;
   private PlayerWeapon weapon;
+  private PlayerGameStats playerGameStats;
 
   private void Start()
   {
     upgrades = GetComponentInParent<PlayerUpgrades>();
     weapon = GetComponentInParent<PlayerWeapon>();
+    playerGameStats = GetComponentInParent<PlayerGameStats>();
   }
 
   private void Launch()
   {
     var go = Instantiate(boomerangPrefab, transform.position, Quaternion.identity, null);
     var boomerang = go.GetComponent<BoomerangMovement>();
-    boomerang.Init(weaponDamageMultiplier, weapon, OnHitPlayer);
+    boomerang.Init(weaponDamageMultiplier, weapon, playerGameStats, OnHitPlayer);
   }
 
   private void OnHitPlayer(GameObject player)
