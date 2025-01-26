@@ -114,7 +114,7 @@ MonoBehaviour:
     xp: 500
     kind: 3
     speed: 1
-    size: 0
+    size: 1
     colorOverride:
       enabled: 0
       palette:
@@ -145,7 +145,7 @@ MonoBehaviour:
   - hp: 3
     xp: 1
     kind: 5
-    speed: 5
+    speed: 2
     size: 1
     colorOverride:
       enabled: 1
@@ -316,7 +316,7 @@ MonoBehaviour:
       maxPerStep: 0
     - kind: 6
       numberPerBatch: 1
-      maxPerStep: 0
+      maxPerStep: 1
     - kind: 7
       numberPerBatch: 10
       maxPerStep: 0

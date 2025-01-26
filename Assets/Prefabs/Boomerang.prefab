@@ -50,7 +50,7 @@ MonoBehaviour:
   time: 1.5
   speed: 10
   returnTime: 3
-  returnAngle: 45
+  returnAngle: 30
 --- !u!58 &4383291767019734856
 CircleCollider2D:
   m_ObjectHideFlags: 0

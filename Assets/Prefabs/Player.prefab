@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ad29b2c7d28c42b2ab4200f47798eec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamageMultiplier: 0.3
+  weaponDamageMultiplier: 1.3
   boomerangPrefab: {fileID: 2903523608130192563, guid: 8df32242a93824e0bb2e55c17bd88757, type: 3}
 --- !u!1 &279074971930843633
 GameObject:
@@ -5303,9 +5303,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 5
-  baseSpeed: 1.5
-  speedMultiplierPerSaw: 1.2
-  weaponDamageMultiplier: 0.5
+  baseSpeed: 180
+  speedMultiplierPerSaw: 1
+  weaponDamageMultiplier: 0.25
   rotatingParent: {fileID: 6162879583326459290}
   sawPrefab: {fileID: 4732580855924215705, guid: 26828368cac4743a4a50609911a26237, type: 3}
 --- !u!114 &5323312079848289679
@@ -6495,7 +6495,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 799a4237808904090a4f444682103102, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  alreadyUpgradedAddedChance: 3
+  alreadyUpgradedAddedChance: 2
   availableUpgrades:
   - key: move_speed
     name: Move speed

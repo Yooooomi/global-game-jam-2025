@@ -13,7 +13,6 @@ public class BoomerangMovement : MonoBehaviour
   private Action<GameObject> onHitPlayer;
   private float weaponDamageMultiplier;
   private bool onReturn;
-  private bool caught;
   private RandomSound sound;
 
   private void Start()
@@ -66,12 +65,12 @@ public class BoomerangMovement : MonoBehaviour
   {
     if (collider.gameObject.CompareTag("Player"))
     {
-      if (!onReturn || caught)
+      if (!onReturn)
       {
         return;
       }
       onHitPlayer(collider.gameObject);
-      caught = true;
+      Destroy(gameObject);
       return;
     }
     if (!collider.TryGetComponent<Hittable>(out var hittable))

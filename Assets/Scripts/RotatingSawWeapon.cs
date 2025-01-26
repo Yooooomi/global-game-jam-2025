@@ -63,7 +63,7 @@ public class RotatingSawWeapon : MonoBehaviour
   private void Update()
   {
     var angle = rotatingParent.transform.localRotation.eulerAngles.z;
-    angle += baseSpeed * 1 + (saws.Count * (speedMultiplierPerSaw - 1f));
+    angle += baseSpeed * (1f + (saws.Count * (speedMultiplierPerSaw - 1f))) * Time.deltaTime;
     rotatingParent.transform.localRotation = Quaternion.Euler(0f, 0f, angle);
   }
 }
