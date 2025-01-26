@@ -7,17 +7,16 @@ public class Explosion : MonoBehaviour
     [SerializeField]
     private GameObject explosionPrefab;
 
-    public void Explode(float radius, float damage, Vector2 position)
+    public void Explode(float radius, float damage, Vector2 position, bool damagePlayer = false)
     {
         Collider2D[] hits = Physics2D.OverlapCircleAll(position, radius);
         foreach (Collider2D collider in hits)
         {
             Hittable hittable = collider.GetComponent<Hittable>();
-            if (hittable == null || collider.CompareTag("Player"))
+            if (hittable == null || (!damagePlayer && collider.CompareTag("Player")))
             {
                 continue;
             }
-            Debug.Log("hit");
             hittable.Hit(damage);
         }
        GameObject explosion = Instantiate(explosionPrefab,  position, Quaternion.identity);

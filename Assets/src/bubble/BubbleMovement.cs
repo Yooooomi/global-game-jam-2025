@@ -1,11 +1,10 @@
 using System;
 using UnityEngine;
 
-public class bubble : MonoBehaviour
+public class BubbleMovement : MonoBehaviour
 {
     public GameObject target;
 
-    [SerializeField]
     private float speed;
 
     [SerializeField]
@@ -23,6 +22,10 @@ public class bubble : MonoBehaviour
     private float lastVibeDirChangeTime = 0;
     private Vector2 vibeDir;
     private Vector2 lastVibe;
+
+    public void SetSpeed(float newSpeed) {
+        speed = newSpeed;
+    }
 
     private void ResetVibeDir()
     {

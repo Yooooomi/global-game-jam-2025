@@ -1,0 +1,13 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: BlkingOverride
+  m_Controller: {fileID: 9100000, guid: c5c9df0de0388de4d98b1f0494bbe1b2, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: e3e8c0968c36e1e41a511f63496b2f30, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 24127336862eda54b935407ac572906a, type: 2}

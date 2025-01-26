@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class BubbleAttack : MonoBehaviour
 {
@@ -7,11 +8,14 @@ public class BubbleAttack : MonoBehaviour
   public float range;
   private float lastAttack;
 
-  private bubble bubble;
+  private BubbleMovement bubble;
+
+  [SerializeField]
+  private ExplosiveBubble explosive;
 
   public void Start()
   {
-    bubble = GetComponent<bubble>();
+    bubble = GetComponent<BubbleMovement>();
   }
 
   public void Update()
@@ -27,7 +31,11 @@ public class BubbleAttack : MonoBehaviour
     var targetDistance = Vector3.Distance(transform.position, bubble.target.transform.position);
     if (targetDistance <= range)
     {
-      if (bubble.target.TryGetComponent<Hittable>(out var hittable))
+      if (explosive.shouldExplode)
+      {
+        explosive.Explode();
+      }
+      else if (bubble.target.TryGetComponent<Hittable>(out var hittable))
       {
         hittable.Hit(damage);
         lastAttack = Time.time;

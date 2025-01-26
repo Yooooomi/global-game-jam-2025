@@ -1,11 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BubbleSpawner : MonoBehaviour
 {
     [SerializeField]
     private GameObject bubble;
+
+    [System.Serializable]
+    private struct BubbleColorOverride
+    {
+        public bool enabled;
+        public BubbleColorPalette palette;
+    }
 
     // Specs of the bubbles
     [System.Serializable]
@@ -14,6 +22,10 @@ public class BubbleSpawner : MonoBehaviour
         public int hp;
         public int xp;
         public BubbleKind kind;
+        public float speed;
+        public float size;
+        public BubbleColorOverride colorOverride;
+        public AnimatorOverrideController animOverride;
     }
     [System.Serializable]
     private enum BubbleKind
@@ -22,6 +34,10 @@ public class BubbleSpawner : MonoBehaviour
         Purple,
         Orange,
         Red,
+        Green,
+        Explosive,
+        PinkBoss,
+        FastBlue,
     };
     [SerializeField]
     private List<BubbleSpec> bubble_specs;
@@ -34,6 +50,7 @@ public class BubbleSpawner : MonoBehaviour
     {
         public BubbleKind kind;
         public int numberPerBatch;
+        public int maxPerStep;
     }
     [System.Serializable]
     private struct SpawnStep
@@ -58,6 +75,7 @@ public class BubbleSpawner : MonoBehaviour
     // Internal
     private float lastSpawnTime = 0;
     private int stepIndex = 0;
+    private Dictionary<int, Dictionary<BubbleKind, int>> total_bubble_spawned_by_step;
 
     void SpawnBubble(BubbleSpec spec)
     {
@@ -72,6 +90,23 @@ public class BubbleSpawner : MonoBehaviour
         BubbleHittable bubble_stats = newBubble.GetComponent<BubbleHittable>();
         bubble_stats.SetInitialHp(spec.hp);
         bubble_stats.SetInitialXp(spec.xp);
+        if (spec.colorOverride.enabled)
+        {
+            BubbleColor bubble_color = newBubble.GetComponentInChildren<BubbleColor>();
+            bubble_color.OverrideBubbleColors(spec.colorOverride.palette);
+        }
+        BubbleMovement movement = newBubble.GetComponent<BubbleMovement>();
+        movement.SetSpeed(spec.speed);
+        newBubble.transform.localScale *= spec.size;
+        if (spec.animOverride != null)
+        {
+            var animator = newBubble.GetComponentInChildren<Animator>();
+            animator.runtimeAnimatorController = spec.animOverride;
+        }
+        if (spec.kind == BubbleKind.Explosive)
+        {
+            newBubble.GetComponent<ExplosiveBubble>().shouldExplode = true;
+        }
     }
 
     void SpawnBubbles()
@@ -85,7 +120,12 @@ public class BubbleSpawner : MonoBehaviour
         {
             for (int i = 0; i < spawn_spec.numberPerBatch; ++i)
             {
+                if (spawn_spec.maxPerStep != 0 && total_bubble_spawned_by_step[stepIndex][spawn_spec.kind] >= spawn_spec.maxPerStep)
+                {
+                    continue;
+                }
                 SpawnBubble(bubble_spec_dic[spawn_spec.kind]);
+                total_bubble_spawned_by_step[stepIndex][spawn_spec.kind]++;
             }
         }
     }

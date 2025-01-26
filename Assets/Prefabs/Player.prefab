@@ -6331,8 +6331,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b58069732912d45f09aee79517c13767, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseMaxHealth: 100
-  baseHealthResplenishPerSeconds: 1
+  baseMaxHealth: 25
+  baseHealthResplenishPerSeconds: 0.25
   healthResplenishCooldown: 1.5
   alive: 1
   respawnTime: 9
@@ -6368,10 +6368,10 @@ MonoBehaviour:
   - key: max_health
     name: Max health
     values:
+    - 5
+    - 10
     - 15
-    - 30
-    - 50
-    - 80
+    - 20
     description: Grow some muscles and get tankier, gain {{diffValue}} max health
   - key: projectile_count
     name: Projectile count
@@ -6425,10 +6425,10 @@ MonoBehaviour:
   - key: health_regen
     name: Health regen
     values:
+    - 0.25
+    - 0.5
+    - 0.75
     - 1
-    - 2
-    - 3
-    - 4
     description: You regen {{diffValue}} more health per seconds
 --- !u!58 &6541797345458630516
 CircleCollider2D:

@@ -49,45 +49,216 @@ MonoBehaviour:
   - hp: 1
     xp: 15
     kind: 0
+    speed: 1
+    size: 1
+    colorOverride:
+      enabled: 0
+      palette:
+        primary: {r: 0, g: 0, b: 0, a: 0}
+        light: {r: 0, g: 0, b: 0, a: 0}
+        dark: {r: 0, g: 0, b: 0, a: 0}
+    animOverride: {fileID: 0}
+  - hp: 1
+    xp: 15
+    kind: 7
+    speed: 3
+    size: 0.5
+    colorOverride:
+      enabled: 0
+      palette:
+        primary: {r: 0.754717, g: 0, b: 0.10586541, a: 0}
+        light: {r: 1, g: 0.14044955, b: 0, a: 0}
+        dark: {r: 0.26415092, g: 0, b: 0, a: 0}
+    animOverride: {fileID: 0}
   - hp: 5
     xp: 30
     kind: 1
+    speed: 1
+    size: 1
+    colorOverride:
+      enabled: 0
+      palette:
+        primary: {r: 0, g: 0, b: 0, a: 0}
+        light: {r: 0, g: 0, b: 0, a: 0}
+        dark: {r: 0, g: 0, b: 0, a: 0}
+    animOverride: {fileID: 0}
   - hp: 20
     xp: 60
     kind: 2
+    speed: 1
+    size: 1
+    colorOverride:
+      enabled: 0
+      palette:
+        primary: {r: 0, g: 0, b: 0, a: 0}
+        light: {r: 0, g: 0, b: 0, a: 0}
+        dark: {r: 0, g: 0, b: 0, a: 0}
+    animOverride: {fileID: 0}
   - hp: 100
     xp: 500
     kind: 3
+    speed: 1
+    size: 0
+    colorOverride:
+      enabled: 0
+      palette:
+        primary: {r: 0, g: 0, b: 0, a: 0}
+        light: {r: 0, g: 0, b: 0, a: 0}
+        dark: {r: 0, g: 0, b: 0, a: 0}
+    animOverride: {fileID: 0}
+  - hp: 500
+    xp: 500
+    kind: 4
+    speed: 1
+    size: 2
+    colorOverride:
+      enabled: 0
+      palette:
+        primary: {r: 0, g: 0, b: 0, a: 0}
+        light: {r: 0, g: 0, b: 0, a: 0}
+        dark: {r: 0, g: 0, b: 0, a: 0}
+    animOverride: {fileID: 0}
+  - hp: 3
+    xp: 1
+    kind: 5
+    speed: 5
+    size: 1
+    colorOverride:
+      enabled: 1
+      palette:
+        primary: {r: 0.754717, g: 0, b: 0.10586541, a: 0}
+        light: {r: 1, g: 0.14044955, b: 0, a: 0}
+        dark: {r: 0.26415092, g: 0, b: 0, a: 0}
+    animOverride: {fileID: 22100000, guid: 1e7f1485c4b772640a57cafbd00c390b, type: 2}
+  - hp: 500
+    xp: 3000
+    kind: 6
+    speed: 1
+    size: 3
+    colorOverride:
+      enabled: 1
+      palette:
+        primary: {r: 0.7529412, g: 0, b: 0.6682269, a: 0}
+        light: {r: 1, g: 0, b: 0.91147995, a: 0}
+        dark: {r: 0.2627451, g: 0, b: 0.22502181, a: 0}
+    animOverride: {fileID: 0}
   steps:
   - bubbles:
     - kind: 0
       numberPerBatch: 10
+      maxPerStep: 0
   - bubbles:
     - kind: 0
       numberPerBatch: 15
+      maxPerStep: 0
     - kind: 1
       numberPerBatch: 5
+      maxPerStep: 0
+    - kind: 5
+      numberPerBatch: 1
+      maxPerStep: 0
   - bubbles:
     - kind: 0
-      numberPerBatch: 20
+      numberPerBatch: 15
+      maxPerStep: 0
     - kind: 1
       numberPerBatch: 10
+      maxPerStep: 0
+    - kind: 5
+      numberPerBatch: 2
+      maxPerStep: 0
+    - kind: 7
+      numberPerBatch: 5
+      maxPerStep: 0
+  - bubbles:
+    - kind: 0
+      numberPerBatch: 30
+      maxPerStep: 0
+    - kind: 5
+      numberPerBatch: 20
+      maxPerStep: 0
+    - kind: 7
+      numberPerBatch: 10
+      maxPerStep: 0
   - bubbles:
     - kind: 0
       numberPerBatch: 20
+      maxPerStep: 0
     - kind: 1
       numberPerBatch: 15
+      maxPerStep: 0
     - kind: 2
       numberPerBatch: 5
+      maxPerStep: 0
+    - kind: 5
+      numberPerBatch: 1
+      maxPerStep: 0
+    - kind: 6
+      numberPerBatch: 1
+      maxPerStep: 1
+    - kind: 7
+      numberPerBatch: 3
+      maxPerStep: 0
   - bubbles:
     - kind: 0
-      numberPerBatch: 20
+      numberPerBatch: 15
+      maxPerStep: 0
     - kind: 1
       numberPerBatch: 10
+      maxPerStep: 0
     - kind: 2
       numberPerBatch: 10
+      maxPerStep: 0
     - kind: 3
       numberPerBatch: 1
+      maxPerStep: 0
+    - kind: 5
+      numberPerBatch: 3
+      maxPerStep: 0
+    - kind: 7
+      numberPerBatch: 5
+      maxPerStep: 0
+  - bubbles:
+    - kind: 0
+      numberPerBatch: 10
+      maxPerStep: 0
+    - kind: 1
+      numberPerBatch: 10
+      maxPerStep: 0
+    - kind: 2
+      numberPerBatch: 10
+      maxPerStep: 0
+    - kind: 3
+      numberPerBatch: 3
+      maxPerStep: 0
+    - kind: 5
+      numberPerBatch: 5
+      maxPerStep: 0
+    - kind: 4
+      numberPerBatch: 1
+      maxPerStep: 0
+    - kind: 7
+      numberPerBatch: 10
+      maxPerStep: 0
+  - bubbles:
+    - kind: 0
+      numberPerBatch: 10
+      maxPerStep: 0
+    - kind: 1
+      numberPerBatch: 20
+      maxPerStep: 0
+    - kind: 2
+      numberPerBatch: 20
+      maxPerStep: 0
+    - kind: 3
+      numberPerBatch: 10
+      maxPerStep: 0
+    - kind: 5
+      numberPerBatch: 5
+      maxPerStep: 0
+    - kind: 4
+      numberPerBatch: 3
+      maxPerStep: 0
   spawnEvery: 2
   nextStepEvery: 30
   minRadius: 25

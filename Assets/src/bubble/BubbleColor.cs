@@ -2,15 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public struct BubbleColorPalette
+{
+    public Color primary;
+    public Color light;
+    public Color dark;
+}
+
 public class BubbleColor : MonoBehaviour
 {
-
     [System.Serializable]
     private struct ColorByHp
     {
-        public Color primary;
-        public Color light;
-        public Color dark;
+        public BubbleColorPalette palette;
         public int hp_required;
     }
 
@@ -25,18 +30,19 @@ public class BubbleColor : MonoBehaviour
     [SerializeField]
     private Animator animator;
 
+    private bool colorOverrided = false;
+
     private void OnHealthChanged(float hp)
     {
+        if (colorOverrided)
+        {
+            return;
+        }
         foreach (ColorByHp colorByHp in colorsByHp)
         {
             if (hp >= colorByHp.hp_required)
             {
-                MaterialPropertyBlock properties = new MaterialPropertyBlock();
-                sprite.GetPropertyBlock(properties);
-                properties.SetColor("_Primary", colorByHp.primary);
-                properties.SetColor("_Light", colorByHp.light);
-                properties.SetColor("_Dark", colorByHp.dark);
-                sprite.SetPropertyBlock(properties);
+                SetBubbleColor(colorByHp.palette);
                 break;
             }
         }
@@ -44,6 +50,22 @@ public class BubbleColor : MonoBehaviour
         {
             animator.SetBool("Dead", true);
         }
+    }
+
+    private void SetBubbleColor(BubbleColorPalette palette)
+    {
+        MaterialPropertyBlock properties = new MaterialPropertyBlock();
+        sprite.GetPropertyBlock(properties);
+        properties.SetColor("_Primary", palette.primary);
+        properties.SetColor("_Light", palette.light);
+        properties.SetColor("_Dark", palette.dark);
+        sprite.SetPropertyBlock(properties);
+    }
+
+    public void OverrideBubbleColors(BubbleColorPalette palette)
+    {
+        colorOverrided = true;
+        SetBubbleColor(palette);
     }
 
     void Awake()
