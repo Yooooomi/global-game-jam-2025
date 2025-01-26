@@ -87,10 +87,6 @@ public class BoomerangMovement : Pickupable
 
   private void OnTriggerEnter2D(Collider2D collider)
   {
-    if (!onReturn)
-    {
-      return;
-    }
     if (collider.gameObject.CompareTag("Player"))
     {
       return;
