@@ -28,13 +28,10 @@ public class BoomerangWeapon : MonoBehaviour
   private void OnHitPlayer(GameObject player)
   {
     var boomerang = player.transform.parent.GetComponentInChildren<BoomerangWeapon>();
-    Debug.Log("CAUGHT");
     if (boomerang == null)
     {
-      Debug.Log("NULL");
       return;
     }
-    Debug.Log("YEY");
     boomerang.Launch();
   }
 
