@@ -22,6 +22,8 @@ public class PlayerWeapon : MonoBehaviour
     private Explosion gunExplosion;
     [SerializeField]
     private float electricityDamageMultiplier = 0.5f;
+    [SerializeField]
+    private float explodeDamageMultiplier = 0.5f;
 
     private float lastShoot;
     public float baseFirerate;
@@ -158,7 +160,7 @@ public class PlayerWeapon : MonoBehaviour
         float blastRadius = upgrades.GetValueByKey("explosion_radius");
         if (blastRadius != 0f)
         {
-            Explose(blastRadius, 1f, go.transform.position);
+            Explose(blastRadius, Mathf.CeilToInt(GetDamage() * explodeDamageMultiplier), go.transform.position);
         }
     }
 
