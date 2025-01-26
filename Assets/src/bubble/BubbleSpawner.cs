@@ -72,6 +72,8 @@ public class BubbleSpawner : MonoBehaviour
     }
     [SerializeField]
     private List<SpawnStep> steps;
+    [SerializeField]
+    private float virtualStepMobMultiplyerEndGame = 0.5f;
 
     // Spawn cadence
     [SerializeField]
@@ -132,14 +134,17 @@ public class BubbleSpawner : MonoBehaviour
     void SpawnBubbles()
     {
         Debug.Log(stepIndex);
+        float mobMultiplier = 1f;
         if (stepIndex >= steps.Count)
         {
+            int virtualSteps = stepIndex - steps.Count + 1;
+            mobMultiplier += virtualSteps * virtualStepMobMultiplyerEndGame;
             stepIndex = steps.Count - 1;
         }
         SpawnStep step = steps[stepIndex];
         foreach (BubbleSpawnSpec spawn_spec in step.bubbles)
         {
-            for (int i = 0; i < spawn_spec.numberPerBatch; ++i)
+            for (int i = 0; i < spawn_spec.numberPerBatch * mobMultiplier; ++i)
             {
                 if (spawn_spec.maxPerStep != 0 && total_bubble_spawned_by_step[stepIndex][spawn_spec.kind] >= spawn_spec.maxPerStep)
                 {
