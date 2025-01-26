@@ -37,4 +37,12 @@ public class PlayerExperience : MonoBehaviour
     var xpNeededForNextLevel = (currentLevel + 1) * additionalXpPerLevel;
     return (float)currentExperience / xpNeededForNextLevel;
   }
+
+  private void Update()
+  {
+    if (Input.GetKeyDown(KeyCode.Equals))
+    {
+      Grant(100);
+    }
+  }
 }

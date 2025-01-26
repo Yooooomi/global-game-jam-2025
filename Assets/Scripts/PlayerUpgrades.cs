@@ -2,6 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
+
+public class OnUpgradeEvent : UnityEvent { }
 
 [Serializable]
 public class PlayerUpgrade
@@ -15,8 +18,10 @@ public class PlayerUpgrade
 
 public class PlayerUpgrades : MonoBehaviour
 {
+  public float alreadyUpgradedAddedChance;
   public List<PlayerUpgrade> availableUpgrades = new();
   public Dictionary<string, int> upgraded = new();
+  public OnUpgradeEvent onUpgradeEvent = new();
 
   public PlayerUpgrade GetByKey(string key)
   {
@@ -68,14 +73,50 @@ public class PlayerUpgrades : MonoBehaviour
 
     var random = new System.Random();
     var selectedIndices = new HashSet<int>();
+    var chances = new List<(int index, float chances)>();
 
-    var playerAvailableUpgrades = availableUpgrades
-      .Where(e => !upgraded.ContainsKey(e.key) || upgraded[e.key] < availableUpgrades.Find(upgrade => upgrade.key == e.key).values.Length - 1)
-      .OrderBy(_ => Guid.NewGuid())
-      .Take(3)
-      .ToList();
+    for (int i = 0; i < availableUpgrades.Count; i += 1)
+    {
+      var availableUpgrade = availableUpgrades[i];
+      var level = GetLevelByKey(availableUpgrade.key);
+      var maxedOut = availableUpgrade.values.Length == level + 1;
+      if (maxedOut)
+      {
+        continue;
+      }
+      var hasSomeLevels = level != -1;
+      if (hasSomeLevels)
+      {
+        chances.Add((i, 1f * alreadyUpgradedAddedChance));
+      }
+      else
+      {
+        chances.Add((i, 1f));
+      }
+    }
 
-    return playerAvailableUpgrades;
+    var shuffledChances = chances.OrderBy(_ => Guid.NewGuid()).ToList();
+    var pickedUpgrades = new List<int>();
+
+    while (pickedUpgrades.Count != 3 && shuffledChances.Count > 0)
+    {
+      var totalChances = shuffledChances.Sum(e => e.chances);
+      var picked = UnityEngine.Random.Range(0f, totalChances);
+
+      var additiveChance = 0f;
+      foreach (var upgradable in shuffledChances)
+      {
+        additiveChance += upgradable.chances;
+        if (picked < additiveChance)
+        {
+          pickedUpgrades.Add(upgradable.index);
+          shuffledChances.Remove(upgradable);
+          break;
+        }
+      }
+    }
+
+    return pickedUpgrades.Select(upgradeIndex => availableUpgrades[upgradeIndex]).ToList();
   }
 
   public void UpgradeByKey(string key)
@@ -83,8 +124,10 @@ public class PlayerUpgrades : MonoBehaviour
     if (!upgraded.ContainsKey(key))
     {
       upgraded[key] = 0;
+      onUpgradeEvent.Invoke();
       return;
     }
     upgraded[key] += 1;
+    onUpgradeEvent.Invoke();
   }
 }

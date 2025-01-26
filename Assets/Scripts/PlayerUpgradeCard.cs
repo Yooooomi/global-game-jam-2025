@@ -10,10 +10,10 @@ public class PlayerUpgradeCard : MonoBehaviour
   [SerializeField]
   private TMP_Text level;
 
-  public void Init(string title, string description, int level)
+  public void Init(string title, string description, int currentLevel)
   {
     this.title.text = title;
     this.description.text = description;
-    this.level.text = level.ToString();
+    this.level.text = $"Level {(currentLevel + 1).ToString()}";
   }
 }
