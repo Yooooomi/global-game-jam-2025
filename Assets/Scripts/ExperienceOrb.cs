@@ -10,6 +10,11 @@ public class ExperienceOrb : Pickupable
     this.experience = experience;
   }
 
+  public override bool CanPickup(PlayerPicker picker)
+  {
+    return true;
+  }
+
   protected override void Pickup(PlayerPicker picker)
   {
     if (!GameObject.Find("PlayerManager").TryGetComponent<PlayerExperience>(out var playerExperience))

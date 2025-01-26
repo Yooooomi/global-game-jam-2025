@@ -13,9 +13,10 @@ public class PlayerPicker : MonoBehaviour
   {
     playerUpgrades = GetComponentInParent<PlayerUpgrades>();
     collider = GetComponent<CircleCollider2D>();
+    playerUpgrades.onUpgradeEvent.AddListener(UpdateCollider);
   }
 
-  private void Update()
+  private void UpdateCollider()
   {
     collider.radius = pickupRadius + (playerUpgrades.GetValueByKey("pickup_radius") / 100f * pickupRadius);
   }

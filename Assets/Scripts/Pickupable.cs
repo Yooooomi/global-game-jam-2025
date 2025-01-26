@@ -3,6 +3,7 @@ using UnityEngine;
 public abstract class Pickupable : MonoBehaviour
 {
   protected abstract void Pickup(PlayerPicker picker);
+  public abstract bool CanPickup(PlayerPicker picker);
 
   private PlayerPicker pickuper;
   private float speed;
@@ -11,6 +12,10 @@ public abstract class Pickupable : MonoBehaviour
 
   public void StartPickup(PlayerPicker picker, float speed)
   {
+    if (!CanPickup(picker))
+    {
+      return;
+    }
     pickuper = picker;
     pickupAt = Time.time + Vector3.Distance(transform.position, picker.transform.position) / speed;
     this.speed = speed;

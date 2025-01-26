@@ -64,10 +64,14 @@ public class BoomerangMovement : Pickupable
     Destroy(gameObject);
   }
 
+  public override bool CanPickup(PlayerPicker picker)
+  {
+    return onReturn;
+  }
+
   protected override void Pickup(PlayerPicker picker)
   {
     onHitPlayer(picker.gameObject);
-    Destroy(gameObject);
   }
 
   protected override void OnStartPickup()

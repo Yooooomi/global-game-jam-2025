@@ -82,7 +82,12 @@ public class PlayerWeapon : MonoBehaviour
             var colliders = Physics2D.OverlapCircleAll(target.position, 2.5f);
             var first = colliders
                 .OrderBy(e => (target.position - e.transform.position).sqrMagnitude)
-                .FirstOrDefault(e => !e.gameObject.CompareTag("Player") && !history.Contains(e.transform.GetInstanceID()) && e.GetComponent<Hittable>() != null);
+                .FirstOrDefault(e =>
+                    !e.gameObject.CompareTag("Player") &&
+                    MapConfiguration.instance.InMap(e.transform.position) &&
+                    !history.Contains(e.transform.GetInstanceID()) &&
+                    e.GetComponent<Hittable>() != null
+                );
 
             if (first == null)
             {
@@ -126,7 +131,7 @@ public class PlayerWeapon : MonoBehaviour
             if (target.TryGetComponent<Hittable>(out var hittable))
             {
                 playerGameStats.RegisterDamages(WeaponType.electrify, hittable.Hit(Mathf.CeilToInt(GetDamage() * electricityDamageMultiplier)));
-                electrify.PlayRandom(.5f);
+                electrify.PlayRandom(.3f);
             }
             // Set the position exactly at the next point
             currentPosition = nextPosition;

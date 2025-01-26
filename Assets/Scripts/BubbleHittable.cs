@@ -43,13 +43,12 @@ public class BubbleHittable : MonoBehaviour, Hittable
         experience = xp;
     }
 
-    public bool CanHit()
-    {
-        return MapConfiguration.instance.InMap(transform.position);
-    }
-
     public float Hit(float damage)
     {
+        if (!MapConfiguration.instance.InMap(transform.position))
+        {
+            return 0f;
+        }
         hp -= damage;
         onHealthChanged.Invoke(hp);
         if (hp <= 0)
