@@ -87,6 +87,9 @@ public class BubbleSpawner : MonoBehaviour
     [SerializeField]
     private float maxRadius = 6.0f;
 
+    [SerializeField]
+    private PlayersEvents players;
+
     // Internal
     private float lastSpawnTime = 0;
     private int stepIndex = 0;
@@ -133,14 +136,16 @@ public class BubbleSpawner : MonoBehaviour
 
     void SpawnBubbles()
     {
-        Debug.Log(stepIndex);
-        float mobMultiplier = 1f;
+        // The game was built for two player
+        float mobMultiplier = players.players.Count == 0 ? 1 : players.players.Count / 2.0f;
         if (stepIndex >= steps.Count)
         {
             int virtualSteps = stepIndex - steps.Count + 1;
             mobMultiplier += virtualSteps * virtualStepMobMultiplyerEndGame;
             stepIndex = steps.Count - 1;
         }
+        Debug.Log("Player Count: " + players.players.Count + " Step index: " + stepIndex + " Mob multiplier: " + mobMultiplier);
+
         SpawnStep step = steps[stepIndex];
         foreach (BubbleSpawnSpec spawn_spec in step.bubbles)
         {
