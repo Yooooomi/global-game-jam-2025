@@ -13,7 +13,7 @@ public class EndGamePlayerUi : MonoBehaviour
 
   public void Init(PlayerGameStats stats)
   {
-    total.text = stats.damages.ToString();
+    total.text = stats.GetTotalDamages().ToString();
     weapon.text = stats.GetDamagesOfWeapon(WeaponType.weapon).ToString();
     explosion.text = stats.GetDamagesOfWeapon(WeaponType.explosion).ToString();
     boomerang.text = stats.GetDamagesOfWeapon(WeaponType.boomerang).ToString();
