@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 public class OnNewGameEvent : UnityEvent { }
 
@@ -9,6 +10,12 @@ public class EndGameUi : MonoBehaviour
   [SerializeField]
   private List<EndGamePlayerUi> uis;
   public OnNewGameEvent onNewGameEvent = new();
+  private PlayersEvents playersEvents;
+
+  private void Start()
+  {
+    playersEvents = GameObject.Find("PlayerManager").GetComponent<PlayersEvents>();
+  }
 
   public void Init(List<PlayerStats> stats)
   {
@@ -22,6 +29,20 @@ public class EndGameUi : MonoBehaviour
     {
       uis[i].gameObject.SetActive(false);
     }
+
+    foreach (var player in playersEvents.players)
+    {
+      player.actions.FindAction("UpgradeSecond", true).performed += OnNewGame;
+    }
+  }
+
+  public void OnNewGame(InputAction.CallbackContext context)
+  {
+    foreach (var player in playersEvents.players)
+    {
+      player.actions.FindAction("UpgradeSecond", true).performed -= OnNewGame;
+    }
+    NewGame();
   }
 
   public void NewGame()

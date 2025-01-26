@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public enum WeaponType
@@ -12,7 +13,6 @@ public enum WeaponType
 
 public class PlayerGameStats : MonoBehaviour
 {
-  public float damages;
   public float damageTaken;
   private readonly Dictionary<WeaponType, float> weaponDamages = new();
 
@@ -27,7 +27,6 @@ public class PlayerGameStats : MonoBehaviour
 
   public void RegisterDamages(WeaponType weaponType, float damages)
   {
-    damages += damages;
     weaponDamages[weaponType] += damages;
   }
 
@@ -39,5 +38,10 @@ public class PlayerGameStats : MonoBehaviour
   public float GetDamagesOfWeapon(WeaponType weaponType)
   {
     return weaponDamages[weaponType];
+  }
+
+  public float GetTotalDamages()
+  {
+    return weaponDamages.Sum(e => e.Value);
   }
 }
