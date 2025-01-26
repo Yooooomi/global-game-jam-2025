@@ -14,7 +14,7 @@ public class PlayerWeapon : MonoBehaviour
     [SerializeField]
     private GameObject bullet;
     [SerializeField]
-    private Transform canon;
+    private CanonRotation canon;
     [SerializeField]
     private GameObject electric;
     [SerializeField]
@@ -48,7 +48,7 @@ public class PlayerWeapon : MonoBehaviour
         return baseFirerate + upgrades.GetValueByKey("firerate");
     }
 
-    private float GetDamage()
+    public float GetDamage()
     {
         return baseDamage + upgrades.GetValueByKey("damage");
     }
@@ -81,7 +81,7 @@ public class PlayerWeapon : MonoBehaviour
         {
             var colliders = Physics2D.OverlapCircleAll(target.position, 2.5f);
             var first = colliders
-                .OrderBy(e => Vector3.Distance(target.position, e.transform.position))
+                .OrderBy(e => (target.position - e.transform.position).sqrMagnitude)
                 .FirstOrDefault(e => !e.gameObject.CompareTag("Player") && !history.Contains(e.transform.GetInstanceID()) && e.GetComponent<Hittable>() != null);
 
             if (first == null)
@@ -126,7 +126,7 @@ public class PlayerWeapon : MonoBehaviour
             if (target.TryGetComponent<Hittable>(out var hittable))
             {
                 hittable.Hit(Mathf.CeilToInt(GetDamage() * electricityDamageMultiplier));
-                electrify.PlayRandom(.3f);
+                electrify.PlayRandom(.5f);
             }
             // Set the position exactly at the next point
             currentPosition = nextPosition;
@@ -178,6 +178,8 @@ public class PlayerWeapon : MonoBehaviour
         lastShoot = Time.time;
 
         firing.PlayRandom();
+
+        canon.UpdateAim();
 
         var halfSpread = spreadAngle / 2f;
         var projectileCount = GetProjectileCount();

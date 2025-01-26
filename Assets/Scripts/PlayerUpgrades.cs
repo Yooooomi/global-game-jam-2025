@@ -2,6 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
+
+public class OnUpgradeEvent : UnityEvent { }
 
 [Serializable]
 public class PlayerUpgrade
@@ -17,6 +20,7 @@ public class PlayerUpgrades : MonoBehaviour
 {
   public List<PlayerUpgrade> availableUpgrades = new();
   public Dictionary<string, int> upgraded = new();
+  public OnUpgradeEvent onUpgradeEvent = new();
 
   public PlayerUpgrade GetByKey(string key)
   {
@@ -83,8 +87,10 @@ public class PlayerUpgrades : MonoBehaviour
     if (!upgraded.ContainsKey(key))
     {
       upgraded[key] = 0;
+      onUpgradeEvent.Invoke();
       return;
     }
     upgraded[key] += 1;
+    onUpgradeEvent.Invoke();
   }
 }

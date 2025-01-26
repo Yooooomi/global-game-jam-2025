@@ -1,5 +1,51 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &152159838219282811
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6168545151768077143}
+  - component: {fileID: 9135134963012343179}
+  m_Layer: 0
+  m_Name: BoomerangWeapon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6168545151768077143
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 152159838219282811}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 516788989360999964}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9135134963012343179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 152159838219282811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ad29b2c7d28c42b2ab4200f47798eec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponDamageMultiplier: 0.3
+  boomerangPrefab: {fileID: 2903523608130192563, guid: 8df32242a93824e0bb2e55c17bd88757, type: 3}
 --- !u!1 &279074971930843633
 GameObject:
   m_ObjectHideFlags: 0
@@ -302,6 +348,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 663e49ba900174eecb9efdd32ce8cf98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startRadiusCheck: 10
+  incrementRadiusCheck: 10
 --- !u!1 &1607965588377620148
 GameObject:
   m_ObjectHideFlags: 0
@@ -5208,6 +5256,72 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -10, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1770519332340285723
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4041119906156293515}
+  - component: {fileID: 6629500288560838625}
+  - component: {fileID: 5323312079848289679}
+  m_Layer: 0
+  m_Name: RotatingSawWeapon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4041119906156293515
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1770519332340285723}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8956610600521715252}
+  m_Father: {fileID: 516788989360999964}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6629500288560838625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1770519332340285723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8855219d3bd2e461190d741e9ffab902, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 5
+  baseSpeed: 1.5
+  speedMultiplierPerSaw: 1.2
+  weaponDamageMultiplier: 0.5
+  rotatingParent: {fileID: 6162879583326459290}
+  sawPrefab: {fileID: 4732580855924215705, guid: 26828368cac4743a4a50609911a26237, type: 3}
+--- !u!114 &5323312079848289679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1770519332340285723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cdfe9ab68b99b749b43c132c83812ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clips:
+  - {fileID: 8300000, guid: 30e8d8f2c15c94a68ba399c9c80a0abd, type: 3}
 --- !u!1 &3213193225880189380
 GameObject:
   m_ObjectHideFlags: 0
@@ -6034,6 +6148,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c54e73b6fb6e8433d85a17632e040bd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &6162879583326459290
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8956610600521715252}
+  m_Layer: 0
+  m_Name: RotatingParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8956610600521715252
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6162879583326459290}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4041119906156293515}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6521380799758409466
 GameObject:
   m_ObjectHideFlags: 0
@@ -6192,6 +6337,8 @@ Transform:
   - {fileID: 1846184777746490158}
   - {fileID: 6261434480715888445}
   - {fileID: 7970043489389515183}
+  - {fileID: 4041119906156293515}
+  - {fileID: 6168545151768077143}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4961729714571687856
@@ -6308,7 +6455,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 9045171342814083422, guid: ce67224c087e442948f2668cee8b0a85, type: 3}
-  canon: {fileID: 5775158034167366412}
+  canon: {fileID: 3595857592476261486}
   electric: {fileID: 2118316003964125212, guid: 56aa4ae477564424eb39fd4f71784f4e, type: 3}
   gunExplosion: {fileID: 6911258390213610531}
   electricityDamageMultiplier: 0.5
@@ -6356,7 +6503,7 @@ MonoBehaviour:
     - 2
     - 3
     - 5
-    description: Go faster, go {{diffValue}} m/s faster
+    description: Go {{diffValue}} m/s faster
   - key: firerate
     name: Firerate
     values:
@@ -6364,7 +6511,7 @@ MonoBehaviour:
     - 1.5
     - 2
     - 3
-    description: Go boom boom boom faster, shoot {{diffValue}} more bullets per second
+    description: Shoot {{diffValue}} more bullets per second
   - key: max_health
     name: Max health
     values:
@@ -6372,7 +6519,7 @@ MonoBehaviour:
     - 10
     - 15
     - 20
-    description: Grow some muscles and get tankier, gain {{diffValue}} max health
+    description: Gain {{diffValue}} max health
   - key: projectile_count
     name: Projectile count
     values:
@@ -6380,7 +6527,7 @@ MonoBehaviour:
     - 1
     - 1
     - 2
-    description: Your weapon throws {{diffValue}} projectiles
+    description: Your weapon throws {{diffValue}} more projectiles
   - key: pickup_radius
     name: Pickup radius
     values:
@@ -6397,7 +6544,7 @@ MonoBehaviour:
     - 65
     - 100
     description: Your bullets have {{value}}% chance of triggering a lightning to
-      another bubble
+      another bubble.
   - key: explosion_radius
     name: Explosion radius
     values:
@@ -6405,7 +6552,7 @@ MonoBehaviour:
     - 2
     - 2.5
     - 4
-    description: Your bullets explode, creating a {{value}}m blast
+    description: Your bullets explode, creating a {{value}}m radius blast
   - key: damage
     name: Damage
     values:
@@ -6425,11 +6572,32 @@ MonoBehaviour:
   - key: health_regen
     name: Health regen
     values:
-    - 0.25
     - 0.5
-    - 0.75
+    - 0.1
+    - 1.5
+    - 3
+    description: You regen {{diffValue}} more hp per seconds
+  - key: auto_aim
+    name: Auto aim
+    values:
     - 1
-    description: You regen {{diffValue}} more health per seconds
+    description: You automatically aim the closest enemy to you
+  - key: rotating_saw
+    name: Rotating saw
+    values:
+    - 1
+    - 2
+    - 3
+    - 4
+    description: You have {{value}} rotating saws rotating around you
+  - key: boomerang
+    name: Boomerang
+    values:
+    - 6
+    - 5
+    - 4
+    - 3
+    description: You throw a catchable boomerang every {{value}} seconds
 --- !u!58 &6541797345458630516
 CircleCollider2D:
   m_ObjectHideFlags: 0
