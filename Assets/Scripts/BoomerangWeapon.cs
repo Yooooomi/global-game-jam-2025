@@ -50,6 +50,10 @@ public class BoomerangWeapon : MonoBehaviour
     }
 
     lastTimeLaunched = Time.time;
-    Launch();
+    var projectileCount = 1 + Mathf.FloorToInt(upgrades.GetValueByKey("projectile_count"));
+    for (int i = 0; i < projectileCount; i += 1)
+    {
+      Launch();
+    }
   }
 }
