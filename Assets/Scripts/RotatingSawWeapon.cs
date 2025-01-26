@@ -22,7 +22,14 @@ public class RotatingSawWeapon : MonoBehaviour
 
   private void OnUpgrade()
   {
-    var count = Mathf.FloorToInt(upgrades.GetValueByKey("rotating_saw"));
+    var speed = upgrades.GetValueByKey("rotating_saw");
+
+    if (speed == 0f)
+    {
+      return;
+    }
+
+    var count = 1 + Mathf.FloorToInt(upgrades.GetValueByKey("projectile_count"));
 
     if (count == saws.Count)
     {
@@ -62,8 +69,9 @@ public class RotatingSawWeapon : MonoBehaviour
 
   private void Update()
   {
+    var speed = upgrades.GetValueByKey("rotating_saw");
     var angle = rotatingParent.transform.localRotation.eulerAngles.z;
-    angle += baseSpeed * (1f + (saws.Count * (speedMultiplierPerSaw - 1f))) * Time.deltaTime;
+    angle += baseSpeed * speed * Time.deltaTime;
     rotatingParent.transform.localRotation = Quaternion.Euler(0f, 0f, angle);
   }
 }
