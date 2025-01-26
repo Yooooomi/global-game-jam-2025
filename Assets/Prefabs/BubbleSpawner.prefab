@@ -95,7 +95,7 @@ MonoBehaviour:
       kindToSpawn: 0
       numberToSpawn: 0
   - hp: 20
-    xp: 500
+    xp: 60
     kind: 2
     speed: 1
     size: 1
@@ -111,7 +111,7 @@ MonoBehaviour:
       kindToSpawn: 0
       numberToSpawn: 0
   - hp: 100
-    xp: 500
+    xp: 60
     kind: 3
     speed: 1
     size: 1
@@ -127,7 +127,7 @@ MonoBehaviour:
       kindToSpawn: 0
       numberToSpawn: 0
   - hp: 500
-    xp: 500
+    xp: 60
     kind: 4
     speed: 1
     size: 2
@@ -158,7 +158,7 @@ MonoBehaviour:
       enabled: 0
       kindToSpawn: 0
       numberToSpawn: 0
-  - hp: 500
+  - hp: 3000
     xp: 0
     kind: 6
     speed: 1
@@ -174,7 +174,7 @@ MonoBehaviour:
       enabled: 1
       kindToSpawn: 8
       numberToSpawn: 3
-  - hp: 250
+  - hp: 1500
     xp: 0
     kind: 8
     speed: 1
@@ -190,7 +190,7 @@ MonoBehaviour:
       enabled: 1
       kindToSpawn: 9
       numberToSpawn: 3
-  - hp: 125
+  - hp: 750
     xp: 300
     kind: 9
     speed: 1
@@ -207,7 +207,7 @@ MonoBehaviour:
       kindToSpawn: 0
       numberToSpawn: 0
   - hp: 500
-    xp: 300
+    xp: 500
     kind: 10
     speed: 1
     size: 3

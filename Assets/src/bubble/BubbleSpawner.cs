@@ -107,7 +107,7 @@ public class BubbleSpawner : MonoBehaviour
         GameObject newBubble = Instantiate(bubble, spawnPos, Quaternion.identity);
         BubbleHittable bubble_stats = newBubble.GetComponent<BubbleHittable>();
         bubble_stats.SetInitialHp(spec.hp);
-        bubble_stats.SetInitialXp(spec.xp);
+        bubble_stats.SetInitialXp(spec.xp * (players.players.Count < 2 ? 2 : 1));
         if (spec.colorOverride.enabled)
         {
             BubbleColor bubble_color = newBubble.GetComponentInChildren<BubbleColor>();

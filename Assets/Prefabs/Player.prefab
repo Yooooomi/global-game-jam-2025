@@ -6543,8 +6543,8 @@ MonoBehaviour:
     values:
     - 20
     - 40
-    - 65
-    - 100
+    - 60
+    - 80
     description: Your bullets have {{value}}% chance of triggering a lightning to
       another bubble.
   - key: explosion_radius
@@ -6661,6 +6661,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damages: 0
+  damageTaken: 0
 --- !u!1 &7475456069639035772
 GameObject:
   m_ObjectHideFlags: 0
