@@ -9,25 +9,6 @@ public class BubbleSpawner : MonoBehaviour
     private GameObject bubble;
 
     [System.Serializable]
-    private struct BubbleColorOverride
-    {
-        public bool enabled;
-        public BubbleColorPalette palette;
-    }
-
-    // Specs of the bubbles
-    [System.Serializable]
-    private struct BubbleSpec
-    {
-        public int hp;
-        public int xp;
-        public BubbleKind kind;
-        public float speed;
-        public float size;
-        public BubbleColorOverride colorOverride;
-        public AnimatorOverrideController animOverride;
-    }
-    [System.Serializable]
     private enum BubbleKind
     {
         Blue,
@@ -38,7 +19,39 @@ public class BubbleSpawner : MonoBehaviour
         Explosive,
         PinkBoss,
         FastBlue,
+        PinkBossSplitted1,
+        PinkBossSplitted2,
+        BlueBoss,
     };
+
+    [System.Serializable]
+    private class BubbleColorOverride
+    {
+        public bool enabled;
+        public BubbleColorPalette palette;
+    }
+
+    [System.Serializable]
+    private class BubbleSplitSpec
+    {
+        public bool enabled;
+        public BubbleKind kindToSpawn;
+        public int numberToSpawn;
+    }
+
+    // Specs of the bubbles
+    [System.Serializable]
+    private class BubbleSpec
+    {
+        public int hp;
+        public int xp;
+        public BubbleKind kind;
+        public float speed;
+        public float size;
+        public BubbleColorOverride colorOverride;
+        public AnimatorOverrideController animOverride;
+        public BubbleSplitSpec splitOptions;
+    }
     [SerializeField]
     private List<BubbleSpec> bubble_specs;
     private Dictionary<BubbleKind, BubbleSpec> bubble_spec_dic = new();
@@ -46,14 +59,14 @@ public class BubbleSpawner : MonoBehaviour
 
     // Steps in the game
     [System.Serializable]
-    private struct BubbleSpawnSpec
+    private class BubbleSpawnSpec
     {
         public BubbleKind kind;
         public int numberPerBatch;
         public int maxPerStep;
     }
     [System.Serializable]
-    private struct SpawnStep
+    private class SpawnStep
     {
         public List<BubbleSpawnSpec> bubbles;
     }
@@ -75,16 +88,16 @@ public class BubbleSpawner : MonoBehaviour
     // Internal
     private float lastSpawnTime = 0;
     private int stepIndex = 0;
-    private Dictionary<int, Dictionary<BubbleKind, int>> total_bubble_spawned_by_step;
+    private Dictionary<int, Dictionary<BubbleKind, int>> total_bubble_spawned_by_step = new();
 
-    void SpawnBubble(BubbleSpec spec)
+    void SpawnBubble(BubbleSpec spec, Vector2 position, float minRadiusForSpawn, float maxRadiusForSpawn)
     {
         Vector2 randomPos = Random.insideUnitCircle.normalized;
 
-        float randomRadius = Random.Range(minRadius, maxRadius);
+        float randomRadius = Random.Range(minRadiusForSpawn, maxRadiusForSpawn);
         randomPos *= randomRadius;
 
-        Vector2 spawnPos = (Vector2)transform.position + randomPos;
+        Vector2 spawnPos = position + randomPos;
 
         GameObject newBubble = Instantiate(bubble, spawnPos, Quaternion.identity);
         BubbleHittable bubble_stats = newBubble.GetComponent<BubbleHittable>();
@@ -107,10 +120,18 @@ public class BubbleSpawner : MonoBehaviour
         {
             newBubble.GetComponent<ExplosiveBubble>().shouldExplode = true;
         }
+        if (spec.splitOptions.enabled)
+        {
+            bubble_stats.onBubbleDeath.AddListener(() =>
+            {
+                SplitOnDeath(spec, newBubble.transform);
+            });
+        }
     }
 
     void SpawnBubbles()
     {
+        Debug.Log(stepIndex);
         if (stepIndex >= steps.Count)
         {
             stepIndex = steps.Count - 1;
@@ -124,7 +145,7 @@ public class BubbleSpawner : MonoBehaviour
                 {
                     continue;
                 }
-                SpawnBubble(bubble_spec_dic[spawn_spec.kind]);
+                SpawnBubble(bubble_spec_dic[spawn_spec.kind], transform.position, minRadius, maxRadius);
                 total_bubble_spawned_by_step[stepIndex][spawn_spec.kind]++;
             }
         }
@@ -132,9 +153,17 @@ public class BubbleSpawner : MonoBehaviour
 
     void Start()
     {
+        for (int i = 0; i < steps.Count; i++)
+        {
+            total_bubble_spawned_by_step.Add(i, new());
+        }
         foreach (BubbleSpec spec in bubble_specs)
         {
             bubble_spec_dic.Add(spec.kind, spec);
+            for (int i = 0; i < steps.Count; i++)
+            {
+                total_bubble_spawned_by_step[i].Add(spec.kind, 0);
+            }
         }
     }
 
@@ -149,6 +178,14 @@ public class BubbleSpawner : MonoBehaviour
         {
             SpawnBubbles();
             lastSpawnTime = Time.time;
+        }
+    }
+
+    void SplitOnDeath(BubbleSpec initialBubbleSpec, Transform origin)
+    {
+        for (int i = 0; i < initialBubbleSpec.splitOptions.numberToSpawn; ++i)
+        {
+            SpawnBubble(bubble_spec_dic[initialBubbleSpec.splitOptions.kindToSpawn], origin.position, /*minRadius=*/0f, /*maxRadius*/2f);
         }
     }
 }

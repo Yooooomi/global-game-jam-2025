@@ -501,54 +501,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -509625881902169740, guid: 05936fcd422153848b296d84b41f2de1, type: 3}
-      propertyPath: steps.Array.data[4].bubbles.Array.size
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: -509625881902169740, guid: 05936fcd422153848b296d84b41f2de1, type: 3}
-      propertyPath: steps.Array.data[5].bubbles.Array.size
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: -509625881902169740, guid: 05936fcd422153848b296d84b41f2de1, type: 3}
-      propertyPath: steps.Array.data[6].bubbles.Array.size
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: -509625881902169740, guid: 05936fcd422153848b296d84b41f2de1, type: 3}
-      propertyPath: steps.Array.data[4].bubbles.Array.data[5].kind
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: -509625881902169740, guid: 05936fcd422153848b296d84b41f2de1, type: 3}
-      propertyPath: steps.Array.data[5].bubbles.Array.data[5].kind
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: -509625881902169740, guid: 05936fcd422153848b296d84b41f2de1, type: 3}
-      propertyPath: steps.Array.data[6].bubbles.Array.data[6].kind
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: -509625881902169740, guid: 05936fcd422153848b296d84b41f2de1, type: 3}
-      propertyPath: steps.Array.data[4].bubbles.Array.data[5].maxPerStep
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -509625881902169740, guid: 05936fcd422153848b296d84b41f2de1, type: 3}
-      propertyPath: steps.Array.data[4].bubbles.Array.data[5].numberPerBatch
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -509625881902169740, guid: 05936fcd422153848b296d84b41f2de1, type: 3}
-      propertyPath: steps.Array.data[5].bubbles.Array.data[0].numberPerBatch
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: -509625881902169740, guid: 05936fcd422153848b296d84b41f2de1, type: 3}
-      propertyPath: steps.Array.data[5].bubbles.Array.data[5].numberPerBatch
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: -509625881902169740, guid: 05936fcd422153848b296d84b41f2de1, type: 3}
-      propertyPath: steps.Array.data[6].bubbles.Array.data[0].numberPerBatch
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: -509625881902169740, guid: 05936fcd422153848b296d84b41f2de1, type: 3}
-      propertyPath: steps.Array.data[6].bubbles.Array.data[6].numberPerBatch
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 1698214903835655689, guid: 05936fcd422153848b296d84b41f2de1, type: 3}
       propertyPath: m_Name
       value: BubbleSpawner

@@ -58,6 +58,10 @@ MonoBehaviour:
         light: {r: 0, g: 0, b: 0, a: 0}
         dark: {r: 0, g: 0, b: 0, a: 0}
     animOverride: {fileID: 0}
+    splitOptions:
+      enabled: 0
+      kindToSpawn: 0
+      numberToSpawn: 0
   - hp: 1
     xp: 15
     kind: 7
@@ -70,6 +74,10 @@ MonoBehaviour:
         light: {r: 1, g: 0.14044955, b: 0, a: 0}
         dark: {r: 0.26415092, g: 0, b: 0, a: 0}
     animOverride: {fileID: 0}
+    splitOptions:
+      enabled: 0
+      kindToSpawn: 0
+      numberToSpawn: 0
   - hp: 5
     xp: 30
     kind: 1
@@ -82,6 +90,10 @@ MonoBehaviour:
         light: {r: 0, g: 0, b: 0, a: 0}
         dark: {r: 0, g: 0, b: 0, a: 0}
     animOverride: {fileID: 0}
+    splitOptions:
+      enabled: 0
+      kindToSpawn: 0
+      numberToSpawn: 0
   - hp: 20
     xp: 60
     kind: 2
@@ -94,6 +106,10 @@ MonoBehaviour:
         light: {r: 0, g: 0, b: 0, a: 0}
         dark: {r: 0, g: 0, b: 0, a: 0}
     animOverride: {fileID: 0}
+    splitOptions:
+      enabled: 0
+      kindToSpawn: 0
+      numberToSpawn: 0
   - hp: 100
     xp: 500
     kind: 3
@@ -106,6 +122,10 @@ MonoBehaviour:
         light: {r: 0, g: 0, b: 0, a: 0}
         dark: {r: 0, g: 0, b: 0, a: 0}
     animOverride: {fileID: 0}
+    splitOptions:
+      enabled: 0
+      kindToSpawn: 0
+      numberToSpawn: 0
   - hp: 500
     xp: 500
     kind: 4
@@ -118,6 +138,10 @@ MonoBehaviour:
         light: {r: 0, g: 0, b: 0, a: 0}
         dark: {r: 0, g: 0, b: 0, a: 0}
     animOverride: {fileID: 0}
+    splitOptions:
+      enabled: 0
+      kindToSpawn: 0
+      numberToSpawn: 0
   - hp: 3
     xp: 1
     kind: 5
@@ -130,8 +154,12 @@ MonoBehaviour:
         light: {r: 1, g: 0.14044955, b: 0, a: 0}
         dark: {r: 0.26415092, g: 0, b: 0, a: 0}
     animOverride: {fileID: 22100000, guid: 1e7f1485c4b772640a57cafbd00c390b, type: 2}
+    splitOptions:
+      enabled: 0
+      kindToSpawn: 0
+      numberToSpawn: 0
   - hp: 500
-    xp: 3000
+    xp: 0
     kind: 6
     speed: 1
     size: 3
@@ -142,6 +170,58 @@ MonoBehaviour:
         light: {r: 1, g: 0, b: 0.91147995, a: 0}
         dark: {r: 0.2627451, g: 0, b: 0.22502181, a: 0}
     animOverride: {fileID: 0}
+    splitOptions:
+      enabled: 1
+      kindToSpawn: 8
+      numberToSpawn: 3
+  - hp: 250
+    xp: 0
+    kind: 8
+    speed: 1
+    size: 2
+    colorOverride:
+      enabled: 1
+      palette:
+        primary: {r: 0.7529412, g: 0, b: 0.65376264, a: 0}
+        light: {r: 1, g: 0, b: 0.91147995, a: 0}
+        dark: {r: 0.2627451, g: 0, b: 0.22502181, a: 0}
+    animOverride: {fileID: 0}
+    splitOptions:
+      enabled: 1
+      kindToSpawn: 9
+      numberToSpawn: 3
+  - hp: 125
+    xp: 300
+    kind: 9
+    speed: 1
+    size: 1
+    colorOverride:
+      enabled: 1
+      palette:
+        primary: {r: 0.7529412, g: 0, b: 0.65376264, a: 0}
+        light: {r: 1, g: 0, b: 0.91147995, a: 0}
+        dark: {r: 0.2627451, g: 0, b: 0.22502181, a: 0}
+    animOverride: {fileID: 0}
+    splitOptions:
+      enabled: 0
+      kindToSpawn: 0
+      numberToSpawn: 0
+  - hp: 500
+    xp: 300
+    kind: 10
+    speed: 1
+    size: 3
+    colorOverride:
+      enabled: 1
+      palette:
+        primary: {r: 0, g: 0.19596666, b: 0.7529412, a: 0}
+        light: {r: 0, g: 0.0572505, b: 1, a: 0}
+        dark: {r: 0, g: 0.033223134, b: 0.2627451, a: 0}
+    animOverride: {fileID: 0}
+    splitOptions:
+      enabled: 0
+      kindToSpawn: 0
+      numberToSpawn: 0
   steps:
   - bubbles:
     - kind: 0
@@ -193,7 +273,7 @@ MonoBehaviour:
     - kind: 5
       numberPerBatch: 1
       maxPerStep: 0
-    - kind: 6
+    - kind: 10
       numberPerBatch: 1
       maxPerStep: 1
     - kind: 7
@@ -217,6 +297,28 @@ MonoBehaviour:
       maxPerStep: 0
     - kind: 7
       numberPerBatch: 5
+      maxPerStep: 0
+  - bubbles:
+    - kind: 0
+      numberPerBatch: 10
+      maxPerStep: 0
+    - kind: 1
+      numberPerBatch: 10
+      maxPerStep: 0
+    - kind: 2
+      numberPerBatch: 10
+      maxPerStep: 0
+    - kind: 3
+      numberPerBatch: 3
+      maxPerStep: 0
+    - kind: 5
+      numberPerBatch: 5
+      maxPerStep: 0
+    - kind: 6
+      numberPerBatch: 1
+      maxPerStep: 0
+    - kind: 7
+      numberPerBatch: 10
       maxPerStep: 0
   - bubbles:
     - kind: 0
